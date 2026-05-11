@@ -15,6 +15,7 @@ import {
   PUMP_GLOBAL_CONFIG,
   PUMP_GLOBAL_SEED,
   PUMP_BONDING_CURVE_SEED,
+  PUMP_FEE_BPS,
 } from './constants.js';
 import { textSeed, findProgramAddress } from './pda.js';
 

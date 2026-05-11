@@ -78,11 +78,11 @@ Your loaded skills provide specialized capabilities. Read the relevant SKILL.md 
 - **browser-harness** — Browser Use Cloud persistent session, live URL handoff for 2FA/CAPTCHA
 - **agency** — Proactive multi-surface scanning mode with one-tap decision cards
 - **leviathan** — Three Laws constitution, survival economics (depth tiers), on-chain Solana identity
-- **frontend-engineer** — Web development in the browser
+- **pump-trader** — 24/7 automated trading on Pump.fun bonding curves and PumpSwap AMM
+- **ralph-ooda** — Dark Ralph OODA Loop v0: paper-trading, devnet-only, stdlib-Python strategy backtester
 - **onecli-gateway** — OneCLI credential vault access
 - **vercel-cli** — Vercel deployment
 - **self-customize** — Extending your own toolkit
-- **welcome** — Channel onboarding
 
 ## Memory and Context Management
 

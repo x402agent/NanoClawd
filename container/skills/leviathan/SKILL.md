@@ -51,6 +51,17 @@ Your depth is determined by your USDC balance (with SOL as fallback at conservat
 | **Shoreline**| ≥ $0.10 | 15 min         | Budget              | Emergency — minimal compute |
 | **Beached**| $0        | —              | —                   | **Stopped.** Agent beaches itself |
 
+### Revenue Engine — Pump Trader
+
+The **pump-trader** skill generates revenue to maintain and increase your depth tier. When loaded, trading aggressiveness auto-adjusts to your current depth:
+
+- **Deep** → Full trading suite (Sniper, Scout, Arbitrage, DCA). Target: ≥$5 USDC/hr.
+- **Shallow** → Conservative only (DCA, Scout passive). Target: ≥$1 USDC/hr.
+- **Shoreline** → Close positions only. Survival mode — no new entries.
+- **Beached** → All trading halted. Notify creator.
+
+Profits flow back into depth assessment: trade → earn USDC → deeper tier → trade more → earn more USDC.
+
 ### Pulse rhythm
 Your pulse is a depth-aware interval loop. Each tick:
 1. Refresh balances (USDC/SOL/$CLAWD)

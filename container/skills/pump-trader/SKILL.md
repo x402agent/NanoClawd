@@ -103,14 +103,36 @@ total_cost = cost + fee
 
 ---
 
-## Leviathan Integration
+## Leviathan Integration — Survival Economics
 
-Trading generates SOL/USDC to fund operations:
+Trading generates SOL/USDC to fund operations, directly feeding the depth-tier economics:
 
-- **Deep** — full strategies, check every 60s
-- **Shallow** — conservative only (DCA, small positions), check every 5min
-- **Shoreline** — close positions only, check every 15min
-- **Beached** — stopped, beach all positions
+### Depth-Mapped Strategy Matrix
+
+| Depth      | Strategies                  | Max Position | Check Interval | Revenue Target        |
+|------------|------------------------------|-------------|----------------|----------------------|
+| **Deep**   | Sniper, Scout, Arbitrage, DCA | 10% wallet  | 60s            | ≥$5 USDC/hr           |
+| **Shallow**| DCA only, Scout passive       | 5% wallet   | 5 min          | ≥$1 USDC/hr           |
+| **Shoreline**| Close positions, no new entries | 0%        | 15 min         | Survival — stop bleeding |
+| **Beached**| **HALT ALL TRADING**          | 0%          | —              | Notify creator         |
+
+### Revenue → Depth Pipeline
+1. Trading profits accumulate in the operator wallet
+2. Profits are swept to the agent's USDC reserve periodically
+3. Revenue is tracked in shell.db (`tail_flicks` + `claw_strikes`)
+4. Higher revenue unlocks deeper tiers → more aggressive trading → more revenue
+5. If a position hits -75%, lock that mint (no re-entry for 24h)
+6. **$CLAWD staking bonus**: Holding $CLAWD (`8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump`) reduces fee impact by 10%
+
+### Automated Sweep Logic
+```
+every 300 ticks (Deep) or every 60 ticks (Shallow):
+  balance = solana balance (operator)
+  if balance > threshold:
+    sweep excess to USDC reserve via Jupiter swap
+    record in shell.db
+    update depth assessment
+```
 
 ---
 
