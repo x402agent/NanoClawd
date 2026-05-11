@@ -57,26 +57,28 @@ bash nanoclawd.sh
 
 ## 設計思想
 
-**理解できる規模。** 1つのプロセス、少数のソースファイル、マイクロサービスなし。NanoClawdのコードベース全体を把握したいなら、Claude Codeに説明を求めれば十分です。
+**🦞 理解できる規模。** 1つのプロセス、少数のソースファイル、マイクロサービスなし。NanoClawdのコードベース全体を把握したいなら、Clawdに説明を求めれば十分です。
 
-**分離によるセキュリティ。** エージェントはLinuxコンテナで実行され、明示的にマウントされたものだけが見えます。コマンドはホストではなくコンテナ内で実行されるため、Bashアクセスも安全です。
+**🔒 分離によるセキュリティ。** エージェントはLinuxコンテナで実行され、明示的にマウントされたものだけが見えます。コマンドはホストではなくコンテナ内で実行されるため、Bashアクセスも安全です。
 
-**個人ユーザー向け。** NanoClawdはモノリシックなフレームワークではなく、各ユーザーのニーズに正確にフィットするソフトウェアです。肥大化するのではなく、オーダーメイドであるよう設計されています。自分のフォークを作り、Claude Codeにニーズに合わせて変更させます。
+**👤 個人ユーザー向け。** NanoClawdはモノリシックなフレームワークではなく、各ユーザーのニーズに正確にフィットするソフトウェアです。肥大化するのではなく、オーダーメイドであるよう設計されています。自分のフォークを作り、Clawdにニーズに合わせて変更させます。
 
-**カスタマイズ＝コード変更。** 設定の肥大化はありません。動作を変えたいならコードを変える。コードベースは変更しても安全な規模です。
+**⚙️ カスタマイズ＝コード変更。** 設定の肥大化はありません。動作を変えたいならコードを変える。コードベースは変更しても安全な規模です。
 
-**AIネイティブ、設計としてハイブリッド。** インストールとオンボーディングは最適化されたスクリプトのパスで、速く決定的です。判断が必要なところ（インストール失敗、対話的な決定、カスタマイズ）では、制御はシームレスにClaude Codeへ渡されます。セットアップ以降も、監視ダッシュボードやデバッグUIは用意しません。問題をチャットで説明すれば、Claude Codeが処理します。
+**🤖 AIネイティブ、設計としてハイブリッド。** インストールとオンボーディングは最適化されたスクリプトのパスで、速く決定的です。判断が必要なところ（インストール失敗、対話的な決定、カスタマイズ）では、制御はシームレスにClawdへ渡されます。セットアップ以降も、監視ダッシュボードやデバッグUIは用意しません。問題をチャットで説明すれば、Clawdが処理します。
 
-**機能ではなくスキル。** トランクにはレジストリとインフラのみを同梱し、個別のチャネルアダプターや代替プロバイダーは含めません。チャネル（Discord、Slack、Telegram、WhatsAppなど）は長期運用される`channels`ブランチに、代替プロバイダー（OpenCode、Ollama）は`providers`ブランチに置かれます。`/add-telegram`や`/add-opencode`などを実行すると、スキルが必要なモジュールだけを正確にフォークへコピーします。要求していない機能は一切入りません。
+**🎯 機能ではなくスキル。** トランクにはレジストリとインフラのみを同梱し、個別のチャネルアダプターや代替プロバイダーは含めません。チャネル（Discord、Slack、Telegram、WhatsAppなど）は長期運用される`channels`ブランチに、代替プロバイダー（OpenCode、Ollama）は`providers`ブランチに置かれます。`/add-telegram`や`/add-opencode`などを実行すると、スキルが必要なモジュールだけを正確にフォークへコピーします。要求していない機能は一切入りません。
 
-**最高のハーネス、最高のモデル。** NanoClawdはAnthropic公式のClaude Agent SDK経由でネイティブにClaude Codeを使用します。最新のClaudeモデルとClaude Codeの全ツールセット（自分のNanoClawdフォークを変更・拡張する能力を含む）が手に入ります。他プロバイダーはドロップイン・オプションです。OpenAIのCodex（ChatGPTサブスクリプションまたはAPIキー）向けには`/add-codex`、OpenCode経由のOpenRouter、Google、DeepSeekなどには`/add-opencode`、ローカルのオープンウェイトモデルには`/add-ollama-provider`。プロバイダーはエージェントグループごとに設定可能です。
+**⚡ 最高のハーネス、最高のモデル。** NanoClawdはAnthropic公式のClawd Agent SDK経由でネイティブにClawdを使用します。最新のClawdモデルと全ツールセット（自分のNanoClawdフォークを変更・拡張する能力を含む）が手に入ります。他プロバイダーはドロップイン・オプションです。OpenAIのCodex向けには`/add-codex`、OpenCode経由のOpenRouter・Google・DeepSeekなどには`/add-opencode`、ローカルのオープンウェイトモデルには`/add-ollama-provider`。プロバイダーはエージェントグループごとに設定可能です。
+
+**🔗 生まれながらのSolanaネイティブ。** すべてのNanoClawdエージェントはスポーン時にSolanaキーペアを取得します。IDはSolana Attestation Service経由でオンチェーン認証されます。支払い（推論・APIコール・ゲートウェイ費用）はエージェントグループごとのSOL/SPLエスクローから流れます。トークン：[$CLAWD](https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump)（Solana）。
 
 ## サポート機能
 
 - **マルチチャネルメッセージング** — WhatsApp、Telegram、Discord、Slack、Microsoft Teams、iMessage、Matrix、Google Chat、Webex、Linear、GitHub、WeChat、Resend経由のメール。`/add-<channel>`スキルでオンデマンドにインストール。1つでも複数でも同時に実行可能。
 - **柔軟な分離モデル** — チャネルごとに専用エージェントを割り当てて完全プライバシーを確保することも、複数チャネルで1つのエージェントを共有して会話は分離しつつメモリを統一することも、複数チャネルを1つの共有セッションにまとめて会話を横断させることもできます。`/manage-channels`でチャネル単位に選択。[docs/isolation-model.md](docs/isolation-model.md)参照。
 - **エージェントごとのワークスペース** — 各エージェントグループは独自の`CLAUDE.md`、独自のメモリ、独自のコンテナ、そしてあなたが許可したマウントのみを持ちます。明示的に配線しない限り、境界を越えるものはありません。
-- **スケジュールタスク** — Claudeを実行し、結果を返信できる定期ジョブ。
+- **スケジュールタスク** — Clawdを実行し、結果を返信できる定期ジョブ。
 - **Webアクセス** — Webからの検索とコンテンツ取得。
 - **コンテナ分離** — エージェントはDockerでサンドボックス化されます（macOS/Linux/WSL2）。[Docker Sandboxes](docs/docker-sandboxes.md)によるマイクロVM分離や、macOSネイティブのオプトインとしてApple Containerも選択可能です。
 - **クレデンシャルのセキュリティ** — エージェントは生のAPIキーを保持しません。アウトバウンドリクエストは[OneCLI Agent Vault](https://github.com/onecli/onecli)を経由し、リクエスト時に認証情報を注入して、エージェントごとのポリシーとレート制限を適用します。
@@ -109,7 +111,7 @@ NanoClawdは設定ファイルを使いません。変更したいときは、Cl
 
 または`/customize`を実行すればガイド付きで変更できます。
 
-コードベースは十分に小さいため、Claudeが安全に変更できます。
+コードベースは十分に小さいため、Clawdが安全に変更できます。
 
 ## コントリビューション
 
@@ -131,15 +133,15 @@ NanoClawdは設定ファイルを使いません。変更したいときは、Cl
 - macOSまたはLinux（WindowsはWSL2経由）
 - Node.js 20以上とpnpm 10以上（インストーラーが未インストールなら両方をインストールします）
 - [Docker Desktop](https://docker.com/products/docker-desktop)（macOS/Windows）または Docker Engine（Linux）
-- [Claude Code](https://claude.ai/download)（`/customize`、`/debug`、セットアップ時のエラー復旧、全ての`/add-<channel>`スキルで使用）
+- [Clawd（Claude Code）](https://claude.ai/download)（`/customize`、`/debug`、セットアップ時のエラー復旧、全ての`/add-<channel>`スキルで使用）
 
 ## アーキテクチャ
 
 ```
-メッセージングアプリ → ホストプロセス（ルーター） → inbound.db → コンテナ（Bun、Claude Agent SDK） → outbound.db → ホストプロセス（配信） → メッセージングアプリ
+メッセージングアプリ → ホスト（ルーター） → inbound.db → コンテナ（Bun、Clawd Agent SDK、Solanaキーペア） → outbound.db → ホスト（配信） → メッセージングアプリ
 ```
 
-単一のNodeホストがセッションごとのエージェントコンテナをオーケストレーションします。メッセージが到着すると、ホストはエンティティモデル（ユーザー → メッセージンググループ → エージェントグループ → セッション）に沿ってルーティングし、セッションの`inbound.db`に書き込み、コンテナを起こします。コンテナ内部のagent-runnerは`inbound.db`をポーリングしてClaudeを実行し、レスポンスを`outbound.db`に書き込みます。ホストは`outbound.db`をポーリングし、チャネルアダプターを通じて配信します。
+単一のNodeホストがセッションごとのエージェントコンテナをオーケストレーションします。メッセージが到着すると、ホストはエンティティモデル（ユーザー → メッセージンググループ → エージェントグループ → セッション）に沿ってルーティングし、セッションの`inbound.db`に書き込み、コンテナを起こします。コンテナ内部のagent-runnerは`inbound.db`をポーリングしてClawdを実行し、レスポンスを`outbound.db`に書き込みます。ホストは`outbound.db`をポーリングし、チャネルアダプターを通じて配信します。
 
 セッションごとに2つのSQLiteファイル、各ファイルにライターは1つだけ — クロスマウントの競合なし、IPCなし、stdinパイプなし。チャネルと代替プロバイダーは起動時に自己登録します。トランクはレジストリとChat SDKブリッジを同梱し、アダプター本体はフォークごとにスキルでインストールされます。
 
@@ -180,7 +182,7 @@ Dockerはクロスプラットフォーム対応（macOS、Linux、WSL2経由の
 
 はい。推奨される方法は`/add-opencode`（OpenCode設定経由でOpenRouter、OpenAI、Google、DeepSeekなど）か`/add-ollama-provider`（Ollama経由でローカルのオープンウェイトモデル）です。どちらもエージェントグループごとに設定可能なので、同じインストール内で異なるエージェントが異なるバックエンドで動作できます。
 
-一時的な実験用には、Claude API互換のエンドポイントも`.env`で利用できます：
+一時的な実験用には、Clawd API互換のエンドポイントも`.env`で利用できます：
 
 ```bash
 ANTHROPIC_BASE_URL=https://your-api-endpoint.com
@@ -203,9 +205,23 @@ Claude Codeに聞いてください。「スケジューラーが動いていな
 
 これにより、ベースシステムを最小限に保ち、全ユーザーが不要な機能を継承することなく自分のインストールをカスタマイズできます。
 
+## $CLAWDトークン 🦞
+
+NanoClawdは**$CLAWD**エコシステムのエージェントランタイムです——Solana上の主権Clawdエージェント。
+
+| 項目 | 内容 |
+|---|---|
+| **トークン** | [$CLAWD](https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump) |
+| **コントラクト** | `8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump` |
+| **チェーン** | Solana |
+| **ウェブサイト** | [solanaclawd.com](https://solanaclawd.com) |
+| **フレームワーク** | [OpenClawd](Framework/) — 主権ロブスターエージェント |
+
+NanoClawdで構築されたエージェントは$CLAWDを保有・獲得し、他エージェントへ$CLAWDで支払い、Solana Attestation Serviceを通じてネットワークにビーコンを送れます。支払えないClawdは座礁します。稼げるClawdは主権を持ちます。
+
 ## コミュニティ
 
-質問やアイデアがありますか？[Discordに参加](https://discord.gg/VDdww8qS42)してください。
+質問やアイデアがありますか？[Discordに参加](https://discord.gg/VDdww8qS42)するか、[solanaclawd.com](https://solanaclawd.com)をご覧ください。
 
 ## 変更履歴
 
