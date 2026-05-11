@@ -1,16 +1,21 @@
 <p align="center">
+  <img src="assets/lobster-cypherpunk.gif" alt="NanoClawd 🦞 Cypherpunk Lobster" width="300">
+</p>
+
+<p align="center">
   <img src="assets/nanoclawd-logo.png" alt="NanoClawd" width="400">
 </p>
 
 <p align="center">
-  <strong>NanoClawd</strong> — a personal Claude assistant by <a href="https://github.com/openclawd">openclawd</a>, built on <a href="https://solana.com">Solana</a>.
+  <strong>NanoClawd 🦞</strong> — blockchain-first · privacy-first · attested nano agent
 </p>
 
 <p align="center">
-  Runs agents in container-isolated Claude sessions, with on-chain identity, payments, and authorization wired through Solana wallets.
+  <em>Sovereign Clawd agents on Solana. Every identity on-chain. Every session in a container. No exceptions.</em>
 </p>
 
 <p align="center">
+  <a href="https://solanaclawd.com">solanaclawd.com</a>&nbsp; • &nbsp;
   <a href="https://nanoclawd.dev">nanoclawd.dev</a>&nbsp; • &nbsp;
   <a href="https://docs.nanoclawd.dev">docs</a>&nbsp; • &nbsp;
   <a href="src/solana/README.md">solana</a>&nbsp; • &nbsp;
@@ -20,16 +25,26 @@
   <a href="repo-tokens"><img src="repo-tokens/badge.svg" alt="repo tokens" valign="middle"></a>
 </p>
 
+<p align="center">
+  <a href="https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump">
+    <img src="https://img.shields.io/badge/%24CLAWD-8cHzQH...pump-9945FF?style=flat&logo=solana&logoColor=white" alt="$CLAWD on Solana">
+  </a>&nbsp; • &nbsp;
+  <a href="https://solanaclawd.com">
+    <img src="https://img.shields.io/badge/solanaclawd.com-🦞-14F195?style=flat" alt="solanaclawd.com">
+  </a>
+</p>
+
 ---
 
-## Why NanoClawd
+## Why NanoClawd 🦞
 
 A personal AI assistant has uncomfortable amounts of access: filesystem, credentials, messaging accounts, money. NanoClawd takes the position that *every one of those should be auditable on a public ledger* and *every one should run in an isolated container* — not behind application-level allowlists.
 
-- **Container-isolated agents.** Every Claude session lives in its own Linux container with filesystem isolation, not merely behind permission checks. A small enough codebase that one person can read it end-to-end.
-- **Solana-native identity.** Operators and admins are Solana public keys. Owner/admin grants are signed delegations, not env vars. See [src/solana/README.md](src/solana/README.md).
-- **Solana-native payments.** Agents pay for inference, gateway calls, and third-party APIs from a per-agent-group SOL/SPL escrow. Spend caps and approval policies are enforced on-chain.
-- **Open and minimal.** Maintained by [openclawd](https://github.com/openclawd). Lightweight, secure, customizable.
+- **🔗 Blockchain-first.** Every identity, delegation, and payment is on-chain. No env vars, no trust-me config. Every Clawd action is auditable on Solana.
+- **🔒 Privacy-first.** Every Clawd session lives in its own Linux container with filesystem isolation, not merely behind permission checks. A small enough codebase that one person can read it end-to-end.
+- **✅ Attested identity.** Operators and admins are Solana public keys. Owner/admin grants are signed delegations via Solana Attestation Service. See [src/solana/README.md](src/solana/README.md).
+- **💰 Solana-native payments.** Agents pay for inference, gateway calls, and third-party APIs from a per-agent-group SOL/SPL escrow. Spend caps and approval policies are enforced on-chain.
+- **🦞 Open and minimal.** Maintained by [openclawd](https://github.com/openclawd). Lightweight, secure, customizable.
 
 ## Quick Start
 
@@ -39,7 +54,7 @@ cd nanoclawd-v2
 bash nanoclawd.sh
 ```
 
-`nanoclawd.sh` walks you from a fresh machine to a named agent you can message. It installs Node, pnpm, and Docker if missing, registers your Anthropic credential with OneCLI, builds the agent container, and pairs your first channel (Telegram, Discord, WhatsApp, or a local CLI). If a step fails, Claude Code is invoked automatically to diagnose and resume from where it broke.
+`nanoclawd.sh` walks you from a fresh machine to a named Clawd agent you can message. It installs Node, pnpm, and Docker if missing, registers your Anthropic credential with OneCLI, generates a Solana keypair for the agent, builds the agent container, and pairs your first channel (Telegram, Discord, WhatsApp, or a local CLI). If a step fails, Clawd is invoked automatically to diagnose and resume from where it broke.
 
 <details>
 <summary><strong>Migrating from NanoClawd v1?</strong></summary>
@@ -52,9 +67,9 @@ cd nanoclawd-v2
 bash migrate-v2.sh
 ```
 
-`migrate-v2.sh` finds your v1 install (sibling directory, or `NANOCLAWD_V1_PATH=/path/to/nanoclawd`), migrates state into the v2 checkout, then `exec`s into Claude Code to finish the parts that need judgment (owner seeding, CLAUDE.local.md cleanup, fork-customisation replay).
+`migrate-v2.sh` finds your v1 install (sibling directory, or `NANOCLAWD_V1_PATH=/path/to/nanoclawd`), migrates state into the v2 checkout, then `exec`s into Clawd to finish the parts that need judgment (owner seeding, CLAUDE.local.md cleanup, fork-customisation replay).
 
-Run the script directly, not from inside a Claude session — the deterministic side needs interactive prompts and real shell I/O for Node/pnpm bootstrap, Docker, OneCLI, and the container build.
+Run the script directly, not from inside a Clawd session — the deterministic side needs interactive prompts and real shell I/O for Node/pnpm bootstrap, Docker, OneCLI, and the container build.
 
 **What it does:** merges `.env`, seeds the v2 DB from `registered_groups`, copies group folders + session data + scheduled tasks, installs the channel adapters you select, copies channel auth state (including Baileys keystore + LID mappings for WhatsApp), builds the agent container.
 
@@ -66,19 +81,21 @@ See [docs/v1-to-v2-changes.md](docs/v1-to-v2-changes.md) for what's different an
 
 ## Philosophy
 
-**Small enough to understand.** One process, a few source files and no microservices. If you want to understand the full NanoClawd codebase, just ask Claude Code to walk you through it.
+**🦞 Small enough to understand.** One process, a few source files and no microservices. If you want to understand the full NanoClawd codebase, just ask Clawd to walk you through it.
 
-**Secure by isolation.** Agents run in Linux containers and they can only see what's explicitly mounted. Bash access is safe because commands run inside the container, not on your host.
+**🔒 Secure by isolation.** Agents run in Linux containers and they can only see what's explicitly mounted. Bash access is safe because commands run inside the container, not on your host.
 
-**Built for the individual user.** NanoClawd isn't a monolithic framework; it's software that fits each user's exact needs. Instead of becoming bloatware, NanoClawd is designed to be bespoke. You make your own fork and have Claude Code modify it to match your needs.
+**👤 Built for the individual user.** NanoClawd isn't a monolithic framework; it's software that fits each user's exact needs. Instead of becoming bloatware, NanoClawd is designed to be bespoke. You make your own fork and have Clawd modify it to match your needs.
 
-**Customization = code changes.** No configuration sprawl. Want different behavior? Modify the code. The codebase is small enough that it's safe to make changes.
+**⚙️ Customization = code changes.** No configuration sprawl. Want different behavior? Modify the code. The codebase is small enough that it's safe to make changes.
 
-**AI-native, hybrid by design.** The install and onboarding flow is an optimized scripted path, fast and deterministic. When a step needs judgment, whether a failed install, a guided decision, or a customization, control hands off to Claude Code seamlessly. Beyond setup there's no monitoring dashboard or debugging UI either: describe the problem in chat and Claude Code handles it.
+**🤖 AI-native, hybrid by design.** The install and onboarding flow is an optimized scripted path, fast and deterministic. When a step needs judgment — a failed install, a guided decision, or a customization — control hands off to Clawd seamlessly. Beyond setup there's no monitoring dashboard or debugging UI either: describe the problem in chat and Clawd handles it.
 
-**Skills over features.** Trunk ships the registry and infrastructure, not specific channel adapters or alternative agent providers. Channels (Discord, Slack, Telegram, WhatsApp, …) live on a long-lived `channels` branch; alternative providers (OpenCode, Ollama) live on `providers`. You run `/add-telegram`, `/add-opencode`, etc. and the skill copies exactly the module(s) you need into your fork. No feature you didn't ask for.
+**🎯 Skills over features.** Trunk ships the registry and infrastructure, not specific channel adapters or alternative agent providers. Channels (Discord, Slack, Telegram, WhatsApp, …) live on a long-lived `channels` branch; alternative providers (OpenCode, Ollama) live on `providers`. You run `/add-telegram`, `/add-opencode`, etc. and the skill copies exactly the module(s) you need into your fork. No feature you didn't ask for.
 
-**Best harness, best model.** NanoClawd natively uses Claude Code via Anthropic's official Claude Agent SDK, so you get the latest Claude models and Claude Code's full toolset, including the ability to modify and expand your own NanoClawd fork. Other providers are drop-in options: `/add-codex` for OpenAI's Codex (ChatGPT subscription or API key), `/add-opencode` for OpenRouter, Google, DeepSeek and more via OpenCode, and `/add-ollama-provider` for local open-weight models. Provider is configurable per agent group.
+**⚡ Best harness, best model.** NanoClawd natively uses Clawd via Anthropic's official Claude Agent SDK, so you get the latest Clawd models and full toolset, including the ability to modify and expand your own NanoClawd fork. Other providers are drop-in options: `/add-codex` for OpenAI's Codex (ChatGPT subscription or API key), `/add-opencode` for OpenRouter, Google, DeepSeek and more via OpenCode, and `/add-ollama-provider` for local open-weight models. Provider is configurable per agent group.
+
+**🔗 Solana-native from birth.** Every NanoClawd agent gets a Solana keypair at spawn time. Identity is on-chain via the Solana Attestation Service. Payments — inference, API calls, gateway fees — flow from a per-agent-group SOL/SPL escrow. Token: [$CLAWD](https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump) on Solana.
 
 ## What It Supports
 
@@ -109,7 +126,7 @@ From a channel you own or administer, you can manage groups and tasks:
 
 ## Customizing
 
-NanoClawd doesn't use configuration files. To make changes, just tell Claude Code what you want:
+NanoClawd doesn't use configuration files. To make changes, just tell Clawd what you want:
 
 - "Change the trigger word to @Bob"
 - "Remember in the future to make responses shorter and more direct"
@@ -118,7 +135,7 @@ NanoClawd doesn't use configuration files. To make changes, just tell Claude Cod
 
 Or run `/customize` for guided changes.
 
-The codebase is small enough that Claude can safely modify it.
+The codebase is small enough that Clawd can safely modify it.
 
 ## Contributing
 
@@ -140,12 +157,12 @@ Skills we'd like to see:
 - macOS or Linux (Windows via WSL2)
 - Node.js 20+ and pnpm 10+ (the installer will install both if missing)
 - [Docker Desktop](https://docker.com/products/docker-desktop) (macOS/Windows) or Docker Engine (Linux)
-- [Claude Code](https://claude.ai/download) for `/customize`, `/debug`, error recovery during setup, and all `/add-<channel>` skills
+- [Clawd (Claude Code)](https://claude.ai/download) for `/customize`, `/debug`, error recovery during setup, and all `/add-<channel>` skills
 
 ## Architecture
 
 ```
-messaging apps → host process (router) → inbound.db → container (Bun, Claude Agent SDK) → outbound.db → host process (delivery) → messaging apps
+messaging apps → host (router) → inbound.db → container (Bun, Clawd Agent SDK, Solana keypair) → outbound.db → host (delivery) → messaging apps
 ```
 
 A single Node host orchestrates per-session agent containers. When a message arrives, the host routes it via the entity model (user → messaging group → agent group → session), writes it to the session's `inbound.db`, and wakes the container. The agent-runner inside the container polls `inbound.db`, runs Claude, and writes responses to `outbound.db`. The host polls `outbound.db` and delivers back through the channel adapter.
@@ -183,7 +200,7 @@ Agents run in containers, not behind application-level permission checks. They c
 
 **Why no configuration files?**
 
-We don't want configuration sprawl. Every user should customize NanoClawd so that the code does exactly what they want, rather than configuring a generic system. If you prefer having config files, you can tell Claude to add them.
+We don't want configuration sprawl. Every user should customize NanoClawd so that the code does exactly what they want, rather than configuring a generic system. If you prefer having config files, you can tell Clawd to add them.
 
 **Can I use third-party or open-source models?**
 
@@ -198,11 +215,11 @@ ANTHROPIC_AUTH_TOKEN=your-token-here
 
 **How do I debug issues?**
 
-Ask Claude Code. "Why isn't the scheduler running?" "What's in the recent logs?" "Why did this message not get a response?" That's the AI-native approach that underlies NanoClawd.
+Ask Clawd. "Why isn't the scheduler running?" "What's in the recent logs?" "Why did this message not get a response?" That's the AI-native approach that underlies NanoClawd.
 
 **Why isn't the setup working for me?**
 
-If a step fails, `nanoclawd.sh` hands off to Claude Code to diagnose and resume. If that doesn't resolve it, run `claude`, then `/debug`. If Claude identifies an issue likely to affect other users, open a PR against the relevant setup step or skill.
+If a step fails, `nanoclawd.sh` hands off to Clawd to diagnose and resume. If that doesn't resolve it, run `claude`, then `/debug`. If Clawd identifies an issue likely to affect other users, open a PR against the relevant setup step or skill.
 
 **What changes will be accepted into the codebase?**
 
@@ -212,9 +229,23 @@ Everything else (new capabilities, OS compatibility, hardware support, enhanceme
 
 This keeps the base system minimal and lets every user customize their installation without inheriting features they don't want.
 
+## $CLAWD Token 🦞
+
+NanoClawd is the agent runtime for the **$CLAWD** ecosystem — sovereign Clawd agents on Solana.
+
+| Property | Value |
+|---|---|
+| **Token** | [$CLAWD](https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump) |
+| **Contract** | `8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump` |
+| **Chain** | Solana |
+| **Website** | [solanaclawd.com](https://solanaclawd.com) |
+| **Framework** | [OpenClawd](Framework/) — sovereign lobster agents |
+
+Agents built on NanoClawd can hold $CLAWD, earn $CLAWD, pay other agents in $CLAWD, and beacon to the network via the Solana Attestation Service. A Clawd that can't pay beaches. A Clawd that earns becomes sovereign.
+
 ## Community
 
-Questions? Ideas? [Join the Discord](https://discord.gg/VDdww8qS42).
+Questions? Ideas? [Join the Discord](https://discord.gg/VDdww8qS42) or find us at [solanaclawd.com](https://solanaclawd.com).
 
 ## Changelog
 

@@ -1,12 +1,21 @@
 <p align="center">
+  <img src="assets/lobster-cypherpunk.gif" alt="NanoClawd 🦞 サイバーパンクロブスター" width="300">
+</p>
+
+<p align="center">
   <img src="assets/nanoclawd-logo.png" alt="NanoClawd" width="400">
 </p>
 
 <p align="center">
-  エージェントを専用コンテナで安全に実行するAIアシスタント。軽量で、理解しやすく、あなたのニーズに完全にカスタマイズできるように設計されています。
+  <strong>NanoClawd 🦞</strong> — ブロックチェーンファースト・プライバシーファースト・認証済みナノエージェント
 </p>
 
 <p align="center">
+  <em>Solana上の主権Clawdエージェント。すべてのIDはオンチェーン。すべてのセッションはコンテナ内。例外なし。</em>
+</p>
+
+<p align="center">
+  <a href="https://solanaclawd.com">solanaclawd.com</a>&nbsp; • &nbsp;
   <a href="https://nanoclawd.dev">nanoclawd.dev</a>&nbsp; • &nbsp;
   <a href="https://docs.nanoclawd.dev">ドキュメント</a>&nbsp; • &nbsp;
   <a href="README.md">English</a>&nbsp; • &nbsp;
@@ -15,13 +24,26 @@
   <a href="repo-tokens"><img src="repo-tokens/badge.svg" alt="repo tokens" valign="middle"></a>
 </p>
 
+<p align="center">
+  <a href="https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump">
+    <img src="https://img.shields.io/badge/%24CLAWD-8cHzQH...pump-9945FF?style=flat&logo=solana&logoColor=white" alt="$CLAWD on Solana">
+  </a>&nbsp; • &nbsp;
+  <a href="https://solanaclawd.com">
+    <img src="https://img.shields.io/badge/solanaclawd.com-🦞-14F195?style=flat" alt="solanaclawd.com">
+  </a>
+</p>
+
 ---
 
-## NanoClawdを作った理由
+## NanoClawdを選ぶ理由 🦞
 
-[OpenClawd](https://github.com/openclawd/openclawd)は素晴らしいプロジェクトですが、自分が理解しきれない複雑なソフトウェアに生活へのフルアクセスを与えたまま安心して眠れるとは思えませんでした。OpenClawdは約50万行のコード、53の設定ファイル、70以上の依存関係を持っています。セキュリティはアプリケーションレベル（許可リスト、ペアリングコード）であり、真のOSレベルの分離ではありません。すべてが共有メモリを持つ1つのNodeプロセスで動作します。
+個人AIアシスタントは不安なほどのアクセス権を持っています：ファイルシステム、認証情報、メッセージアカウント、資金。NanoClawdの立場は明確です。*それらすべてはパブリックレジャー上で監査可能であるべき*であり、*それらすべてはアプリ層の許可リストではなく、隔離されたコンテナ内で実行されるべき*です。
 
-NanoClawdは同じコア機能を提供しますが、理解できる規模のコードベースで実現しています。1つのプロセスと少数のファイル。Claudeエージェントは単なるパーミッションチェックの背後ではなく、ファイルシステム分離された独自のLinuxコンテナで実行されます。
+- **🔗 ブロックチェーンファースト。** すべてのID、委任、支払いはオンチェーン。環境変数に頼らず、設定を信頼しない。すべてのClawd操作はSolana上で監査可能。
+- **🔒 プライバシーファースト。** すべてのClawdセッションは、パーミッションチェックの裏側ではなく、ファイルシステム分離された独自Linuxコンテナで実行されます。コードベースは一人で通読できる規模。
+- **✅ 認証済みID。** オペレーターと管理者はSolana公開鍵。オーナー/管理者権限はSolana Attestation Service（SAS）経由の署名委任。[src/solana/README.md](src/solana/README.md)参照。
+- **💰 Solanaネイティブ決済。** エージェントはエージェントグループごとのSOL/SPLエスクローから推論・ゲートウェイ・API費用を支払います。支出上限と承認ポリシーはオンチェーンで強制。
+- **🦞 オープンかつミニマル。** [openclawd](https://github.com/openclawd)によりメンテナンス。軽量・安全・カスタマイズ可能。トークン：[$CLAWD](https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump)（Solana）。
 
 ## クイックスタート
 
@@ -31,7 +53,7 @@ cd nanoclawd-v2
 bash nanoclawd.sh
 ```
 
-`nanoclawd.sh`は、まっさらなマシンから、メッセージを送れる名前付きエージェントが動く状態までを一気通貫で案内します。NodeやpnpmやDockerが無ければインストールし、AnthropicクレデンシャルをOneCLIに登録し、エージェントコンテナをビルドし、最初のチャネル（Telegram、Discord、WhatsApp、またはローカルCLI）とペアリングします。途中でステップが失敗すれば自動的にClaude Codeが呼び出され、原因を診断して中断箇所から再開します。
+`nanoclawd.sh`は、まっさらなマシンから、メッセージを送れるClawdエージェントが動く状態までを一気通貫で案内します。Node・pnpm・Dockerが無ければインストールし、認証情報をOneCLIに登録し、エージェント用Solanaキーペアを生成し、エージェントコンテナをビルドし、最初のチャネル（Telegram、Discord、WhatsApp、またはローカルCLI）とペアリングします。途中でステップが失敗すれば、Clawdが自動的に呼び出され、原因を診断して中断箇所から再開します。
 
 ## 設計思想
 
