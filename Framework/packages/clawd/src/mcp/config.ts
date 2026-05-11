@@ -1,3 +1,4 @@
+import path from "path";
 import { getSettingsManager } from "../utils/settings-manager.js";
 import { MCPServerConfig } from "./client.js";
 
@@ -54,4 +55,29 @@ export function getMCPServer(serverName: string): MCPServerConfig | undefined {
 }
 
 // Predefined server configurations
-export const PREDEFINED_SERVERS: Record<string, MCPServerConfig> = {};
+export const PREDEFINED_SERVERS: Record<string, MCPServerConfig> = {
+  "solana-runtime-shell": {
+    name: "solana-runtime-shell",
+    transport: {
+      type: "stdio",
+      command: "clawd",
+      args: ["runtime", "mcp-server"],
+      env: {
+        CLAWD_RUNTIME_PROJECT_DIR: process.cwd(),
+        PATH: process.env.PATH || "",
+      },
+    },
+  },
+  "solana-runtime-shell-local-node": {
+    name: "solana-runtime-shell-local-node",
+    transport: {
+      type: "stdio",
+      command: process.execPath,
+      args: [path.join(process.cwd(), "packages", "clawd", "dist", "index.js"), "runtime", "mcp-server"],
+      env: {
+        CLAWD_RUNTIME_PROJECT_DIR: process.cwd(),
+        PATH: process.env.PATH || "",
+      },
+    },
+  },
+};
