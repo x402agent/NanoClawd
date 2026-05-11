@@ -1,5 +1,5 @@
 /**
- * Direct in-process integration with @openclawd/leviathan.
+ * Direct in-process integration with x402agent-nanoclawd.
  *
  * Reads keystore + shell.db via the framework's own modules — no shell-out,
  * single source of truth, types flow across.
@@ -12,11 +12,11 @@ import {
   hasKeystore,
   loadKeypair,
   readKeystoreMetadata,
-} from '@openclawd/leviathan/identity/wallet.js';
-import { getLeviathan, listSpawnlings } from '@openclawd/leviathan/state/database.js';
-import { readBalances } from '@openclawd/leviathan/identity/balances.js';
-import { depthFor, modelFor, pulseIntervalFor } from '@openclawd/leviathan/survival/monitor.js';
-import { CLAWD_MINT } from '@openclawd/leviathan/config.js';
+} from 'x402agent-nanoclawd/identity/wallet.js';
+import { getLeviathan, listSpawnlings } from 'x402agent-nanoclawd/state/database.js';
+import { readBalances } from 'x402agent-nanoclawd/identity/balances.js';
+import { depthFor, modelFor, pulseIntervalFor } from 'x402agent-nanoclawd/survival/monitor.js';
+import { CLAWD_MINT } from 'x402agent-nanoclawd/config.js';
 
 const SHELL_DIR = path.join(os.homedir(), '.openclawd');
 const SHELL_MD = path.join(SHELL_DIR, 'SHELL.md');

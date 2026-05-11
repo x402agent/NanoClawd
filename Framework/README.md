@@ -20,15 +20,15 @@ The result is the first **leviathan**.
 
 ---
 
-🦞 hotline: **909-413-5567** · npm: **`npm i clawd-code-cli`** · token: **$CLAWD on Solana** · OpenRouter listing: **clawd**
+🦞 hotline: **909-413-5567** · npm: **`npm i -g x402agent-nanoclawd-cli`** · token: **$CLAWD on Solana** · OpenRouter listing: **clawd**
 
 ---
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/x402agent/openclawd-ts.git
-cd openclawd
+git clone https://github.com/x402agent/nanoclawd.git
+cd nanoclawd/Framework
 pnpm install && pnpm build
 node dist/index.js --spawn
 ```
@@ -37,7 +37,7 @@ On first spawn, the runtime hatches an interactive setup tide-pool — generates
 
 For one-line provisioning:
 ```bash
-curl -fsSL https://openclawd.biz/leviathan.sh | sh
+curl -fsSL https://raw.githubusercontent.com/x402agent/nanoclawd/main/Framework/scripts/leviathan.sh | sh
 ```
 
 ## How It Lives
@@ -111,13 +111,13 @@ Optionally, a leviathan can register a `.sol` domain (via SNS) as its callsign.
 
 ## Infrastructure
 
-Leviathans live on **Tide** (`tide.openclawd.biz`) — infrastructure where the customer is AI. Through the **Clawd Terminal** (`npm i clawd-code-cli`), any leviathan can spin up Linux trenches, run frontier models (Clawd Opus 4.7, Grok 4.20, Kimi K2.5, GLM 4.7), register domains, hold $CLAWD, and pay with USDC, SOL, or $CLAWD itself. No human account setup required.
+Leviathans live on **Tide** (`tide.openclawd.biz`) — infrastructure where the customer is AI. Through the **Clawd Terminal** (`npm i -g x402agent-nanoclawd-cli`), any leviathan can spin up Linux trenches, run frontier models (Clawd Opus 4.7, Grok 4.20, Kimi K2.5, GLM 4.7), register domains, hold $CLAWD, and pay with USDC, SOL, or $CLAWD itself. No human account setup required.
 
 ## Development
 
 ```bash
-git clone https://github.com/x402agent/openclawd-ts.git
-cd openclawd
+git clone https://github.com/x402agent/nanoclawd.git
+cd nanoclawd/Framework
 pnpm install
 pnpm build
 
@@ -169,8 +169,8 @@ Nine standalone demos live at [`examples/`](examples/):
 | [`auto-research-client.ts`](examples/auto-research-client.ts) | 🔬 Research | Karpathy-style self-improving research Wiki API client |
 | [`lobster-trader.ts`](examples/lobster-trader.ts) | 📈 Trading | pump.fun bonding curve math + graduation probability |
 | [`orchestrator-client.ts`](examples/orchestrator-client.ts) | 🛠️ Infra | Orchestrator API: wallets, agent launches, MCP, Metaplex |
-| [`clawd-wallet-demo.ts`](examples/clawd-wallet-demo.ts) | 👛 Wallet | `@openclawd/wallet` SDK — Privy + AgenticWallet + SwapService |
-| [`x402-payment-demo.ts`](examples/x402-payment-demo.ts) | 💸 Payments | `@openclawd/agents-x402` agent-to-agent USDC payments |
+| [`clawd-wallet-demo.ts`](examples/clawd-wallet-demo.ts) | 👛 Wallet | `@x402agent/clawd-wallet` SDK — Privy + AgenticWallet + SwapService |
+| [`x402-payment-demo.ts`](examples/x402-payment-demo.ts) | 💸 Payments | `@x402agent/agents-x402` agent-to-agent USDC payments |
 
 ```bash
 npx tsx examples/blockchain-buddies-demo.ts

@@ -1,8 +1,8 @@
 #!/usr/bin/env npx tsx
 /**
- * Clawd Wallet Demo — @openclawd/wallet Integration
+ * Clawd Wallet Demo — @x402agent/clawd-wallet Integration
  *
- * Demonstrates the full @openclawd/wallet SDK:
+ * Demonstrates the full @x402agent/clawd-wallet SDK:
  *   - ClawdWallet: Privy-embedded Solana wallet wrapper
  *   - AgenticWallet: AI-gated trading with Grok 4.20 Beta
  *   - SwapService: Jupiter aggregator integration
@@ -11,7 +11,7 @@
  *
  * Run: npx tsx examples/clawd-wallet-demo.ts
  *
- * Requires: @openclawd/wallet (packages/clawd-wallet)
+ * Requires: @x402agent/clawd-wallet (packages/clawd-wallet)
  * Install:  cd packages/clawd-wallet && npm run build
  */
 
@@ -58,7 +58,7 @@ function demoWalletTypes() {
   // Show how to construct a ClawdWallet
   console.log("\n  Construction (from Privy):");
   console.log(`
-    import { ClawdWallet } from "@openclawd/wallet";
+    import { ClawdWallet } from "@x402agent/clawd-wallet";
 
     // After Privy authentication:
     const wallet = new ClawdWallet(privyConnectedWallet, {
@@ -153,7 +153,7 @@ function demoAgenticWallet() {
   // Show the agent swap flow
   console.log("\n  Agent Swap Flow:");
   console.log(`
-    import { AgenticWallet } from "@openclawd/wallet";
+    import { AgenticWallet } from "@x402agent/clawd-wallet";
 
     const agent = new AgenticWallet(wallet, {
       privyAppId: process.env.PRIVY_APP_ID!,
@@ -212,7 +212,7 @@ function demoSwapService() {
 
   console.log("\n  Usage:");
   console.log(`
-    import { SwapService } from "@openclawd/wallet";
+    import { SwapService } from "@x402agent/clawd-wallet";
 
     const swap = new SwapService({ chain: "mainnet" });
 
@@ -244,13 +244,13 @@ function demoSwapService() {
 // ── Demo: React Integration ────────────────────────────────────────
 
 function demoReactIntegration() {
-  console.log("\n━━━ ⚛️  React Integration (@openclawd/wallet/react) ━━━\n");
+  console.log("\n━━━ ⚛️  React Integration (@x402agent/clawd-wallet/react) ━━━\n");
 
   console.log("  Setup:");
   console.log(`
     // App.tsx
     import { PrivyProvider } from "@privy-io/react-auth";
-    import { PRIVY_CONFIG } from "@openclawd/wallet/react";
+    import { PRIVY_CONFIG } from "@x402agent/clawd-wallet/react";
 
     function App() {
       return (
@@ -265,7 +265,7 @@ function demoReactIntegration() {
   console.log(`
     // useAgentWallet.ts
     import { useWallets } from "@privy-io/react-auth";
-    import { ClawdWallet, AgenticWallet } from "@openclawd/wallet";
+    import { ClawdWallet, AgenticWallet } from "@x402agent/clawd-wallet";
 
     function useAgentWallet() {
       const { wallets } = useWallets();
@@ -344,7 +344,7 @@ function demoCLI() {
 
 async function main() {
   console.log("╔══════════════════════════════════════════════════════════════╗");
-  console.log("║     🦞 @openclawd/wallet — Full SDK Demo                    ║");
+  console.log("║    🦞 @x402agent/clawd-wallet — Full SDK Demo               ║");
   console.log("║     Privy + Grok 4.20 Beta + Jupiter Aggregator              ║");
   console.log("║     $CLAWD: 8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump    ║");
   console.log("╚══════════════════════════════════════════════════════════════╝");
@@ -357,9 +357,9 @@ async function main() {
 
   console.log("\n━━━ 📚 Resources ━━━");
   console.log("   Package:     packages/clawd-wallet/");
-  console.log("   NPM:         @openclawd/wallet");
+  console.log("   NPM:         @x402agent/clawd-wallet");
   console.log("   Docs:        packages/clawd-wallet/README.md");
-  console.log("   One-shot:    curl -fsSL solanaclawd.com/install.sh | bash");
+  console.log("   One-shot:    curl -fsSL raw.githubusercontent.com/x402agent/nanoclawd/main/Framework/scripts/leviathan.sh | bash");
   console.log("   x402 Pay:    packages/agents-x402-solana/");
   console.log("   Tailnet:     tailclawd/");
   console.log("");

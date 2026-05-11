@@ -27,12 +27,12 @@ Thank you for your interest in contributing to Clawd Code CLI. This document pro
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally:
    ```bash
-   git clone https://github.com/8bit/clawd-code-cli.git
-   cd clawd-code-cli
+   git clone https://github.com/x402agent/nanoclawd.git
+   cd nanoclawd/Framework/packages/clawd
    ```
 3. **Add the upstream remote**:
    ```bash
-   git remote add upstream https://github.com/8bit/clawd-code-cli.git
+   git remote add upstream https://github.com/x402agent/nanoclawd.git
    ```
 
 ## Development Setup
@@ -85,7 +85,7 @@ bun run dev:node
 ## Project Structure
 
 ```
-clawd-code-cli/
+nanoclawd/
 ├── src/
 │   ├── agent/          # Core agent logic and orchestration
 │   ├── commands/        # CLI command handlers

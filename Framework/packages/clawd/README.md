@@ -5,7 +5,7 @@
 **A lobster-themed AI terminal operator for coding, system ops & Solana**
 
 [![Solana](https://img.shields.io/badge/Solana-Blockchain-14F195)](https://solana.com)
-[![npm](https://img.shields.io/badge/npm-clawd--code--cli-CB3837)](https://www.npmjs.com/package/clawd-code-cli)
+[![npm](https://img.shields.io/badge/npm-x402agent--nanoclawd--cli-CB3837)](https://www.npmjs.com/package/x402agent-nanoclawd-cli)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 🦞 *"Claws that code, brains that deploy"* 🦞
@@ -66,10 +66,10 @@
 
 ```bash
 # Recommended
-npm install -g clawd-code-cli
+npm install -g x402agent-nanoclawd-cli
 
 # Or with bun
-bun add -g clawd-code-cli
+bun add -g x402agent-nanoclawd-cli
 ```
 
 The `clawd` and `clawd` aliases are registered automatically.
@@ -352,8 +352,8 @@ Every action that moves SOL or places a trade routes through the existing `Confi
 ## Local Development
 
 ```bash
-git clone https://github.com/8bit/clawd-code-cli.git
-cd clawd-code-cli
+git clone https://github.com/x402agent/nanoclawd.git
+cd nanoclawd/Framework/packages/clawd
 npm install
 npm run build
 npm link   # symlink locally for testing

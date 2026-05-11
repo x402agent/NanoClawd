@@ -4,9 +4,9 @@
  * subprocess runner did, so the UI doesn't need to change.
  */
 
-import { runSpawnWizard, type WizardInput } from '@openclawd/leviathan/setup/wizard.js';
-import { spawnSpawnling, type SpawnSpawnlingInput } from '@openclawd/leviathan/molting/spawn.js';
-import { recordEvent, getLeviathan } from '@openclawd/leviathan/state/database.js';
+import { runSpawnWizard, type WizardInput } from 'x402agent-nanoclawd/setup/wizard.js';
+import { spawnSpawnling, type SpawnSpawnlingInput } from 'x402agent-nanoclawd/molting/spawn.js';
+import { recordEvent, getLeviathan } from 'x402agent-nanoclawd/state/database.js';
 import { readLive, getLeviathanKeypair } from './state.js';
 
 export type LifecycleEvent = { kind: 'log' | 'ok' | 'error'; msg: string };

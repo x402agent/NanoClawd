@@ -1,5 +1,5 @@
 {
-  "name": "@openclawd/leviathan",
+  "name": "x402agent-nanoclawd",
   "version": "0.1.0",
   "description": "OpenClawd — Sovereign AI Lobster Runtime on Solana",
   "type": "module",
@@ -53,13 +53,13 @@
   },
   "bin": {
     "leviathan": "dist/index.js",
-    "openclawd": "dist/index.js"
+    "nanoclawd": "dist/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/x402agent/openclawd-ts.git"
+    "url": "git+https://github.com/x402agent/nanoclawd.git"
   },
-  "homepage": "https://openclawd.biz",
+  "homepage": "https://github.com/x402agent/nanoclawd#readme",
   "keywords": [
     "autonomous-agent",
     "sovereign-ai",
@@ -119,6 +119,9 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/x402agent/openclawd-ts/issues"
+    "url": "https://github.com/x402agent/nanoclawd/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -51,4 +51,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Morph Fast Apply support
 - Interactive terminal UI
 
-[Unreleased]: https://github.com/8bit/clawd-code-cli/compare/v0.0.34...HEAD
+[Unreleased]: https://github.com/x402agent/nanoclawd/compare/v0.0.34...HEAD

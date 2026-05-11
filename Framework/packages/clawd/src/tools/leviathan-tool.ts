@@ -11,7 +11,7 @@
  *   leviathan_molt          →  record a molt
  *   leviathan_beach         →  record a beach event
  *
- * No shell-out, no subprocess. Calls @openclawd/leviathan directly.
+ * No shell-out, no subprocess. Calls x402agent-nanoclawd directly.
  */
 
 import {

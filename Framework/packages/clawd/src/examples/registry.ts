@@ -15,7 +15,7 @@ export const EXAMPLES: ExampleSpec[] = [
   { id: 'lobtrader', file: 'lobster-trader.ts',          title: 'Lobster Trader',     category: 'trading',  desc: 'pump.fun bonding-curve math, graduation odds' },
   { id: 'orch',      file: 'orchestrator-client.ts',     title: 'Orchestrator',       category: 'infra',    desc: 'Wallet, agent launches, MCP, Metaplex Core' },
   { id: 'wallet',    file: 'clawd-wallet-demo.ts',       title: 'Clawd Wallet SDK',   category: 'wallet',   desc: 'Privy + AgenticWallet (Grok 4.20) + SwapService' },
-  { id: 'x402pay',   file: 'x402-payment-demo.ts',       title: 'x402 Agent Pay',     category: 'payments', desc: '@openclawd/agents-x402 — agent-to-agent USDC' },
+  { id: 'x402pay',   file: 'x402-payment-demo.ts',       title: 'x402 Agent Pay',     category: 'payments', desc: '@x402agent/agents-x402 — agent-to-agent USDC' },
 ];
 
 export function findExample(query: string): ExampleSpec | undefined {
