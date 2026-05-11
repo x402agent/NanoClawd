@@ -61,7 +61,7 @@ launchctl kickstart -k gui/$(id -u)/com.nanoclawd  # macOS
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `CHROME_PATH` | `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome` | Chrome executable path |
-| `NANOCLAW_ROOT` | `process.cwd()` | Project root directory |
+| `NANOCLAWD_ROOT` | `process.cwd()` | Project root directory |
 | `LOG_LEVEL` | `info` | Logging level (debug, info, warn, error) |
 
 Set in `.env` file (loaded via `dotenv-cli` at runtime):
@@ -233,7 +233,7 @@ COPY .claude/skills/x-integration/agent.ts ./src/skills/x-integration/
 
 ## Setup
 
-All paths below are relative to project root (`NANOCLAW_ROOT`).
+All paths below are relative to project root (`NANOCLAWD_ROOT`).
 
 ### 1. Check Chrome Path
 

@@ -121,7 +121,7 @@ MATRIX_BOT_USERNAME=Andy
 MATRIX_INVITE_AUTOJOIN=true                    # Auto-accept room invites (default: true)
 MATRIX_INVITE_AUTOJOIN_ALLOWLIST=@you:matrix.org  # Only accept invites from these users
 MATRIX_RECOVERY_KEY=your-recovery-key          # Enable E2EE cross-signing
-MATRIX_DEVICE_ID=NANOCLAW01                    # Stable device ID across restarts
+MATRIX_DEVICE_ID=NANOCLAWD01                    # Stable device ID across restarts
 ```
 
 ### Configure environment

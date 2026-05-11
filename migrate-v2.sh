@@ -7,7 +7,7 @@
 #
 # If you're in Claude Code, exit first or open a separate terminal.
 #
-# Finds v1 automatically (sibling directory, or $NANOCLAW_V1_PATH).
+# Finds v1 automatically (sibling directory, or $NANOCLAWD_V1_PATH).
 # Installs prerequisites (Node, pnpm, deps) via the existing setup.sh
 # bootstrap, then runs the migration steps.
 #
@@ -147,7 +147,7 @@ echo
 step_info "Installing prerequisites (Node, pnpm, dependencies)…"
 
 BOOTSTRAP_RAW="$STEPS_DIR/01-bootstrap.log"
-export NANOCLAW_BOOTSTRAP_LOG="$BOOTSTRAP_RAW"
+export NANOCLAWD_BOOTSTRAP_LOG="$BOOTSTRAP_RAW"
 
 if bash "$PROJECT_ROOT/setup.sh" > "$BOOTSTRAP_RAW" 2>&1; then
   # Parse the status block from setup.sh output
@@ -193,12 +193,12 @@ fi
 
 find_v1() {
   # Explicit override
-  if [ -n "${NANOCLAW_V1_PATH:-}" ]; then
-    if [ -f "$NANOCLAW_V1_PATH/store/messages.db" ]; then
-      echo "$NANOCLAW_V1_PATH"
+  if [ -n "${NANOCLAWD_V1_PATH:-}" ]; then
+    if [ -f "$NANOCLAWD_V1_PATH/store/messages.db" ]; then
+      echo "$NANOCLAWD_V1_PATH"
       return 0
     fi
-    step_fail "NANOCLAW_V1_PATH=$NANOCLAW_V1_PATH does not contain store/messages.db"
+    step_fail "NANOCLAWD_V1_PATH=$NANOCLAWD_V1_PATH does not contain store/messages.db"
     return 1
   fi
 
@@ -232,8 +232,8 @@ if V1_PATH=$(find_v1); then
 else
   step_fail "No v1 install found"
   echo
-  echo "  $(dim 'Set NANOCLAW_V1_PATH to point at your v1 checkout:')"
-  echo "  $(dim 'NANOCLAW_V1_PATH=~/nanoclawd bash migrate-v2.sh')"
+  echo "  $(dim 'Set NANOCLAWD_V1_PATH to point at your v1 checkout:')"
+  echo "  $(dim 'NANOCLAWD_V1_PATH=~/nanoclawd bash migrate-v2.sh')"
   echo
   abort "v1-not-found"
 fi
@@ -271,8 +271,8 @@ step_ok "Phase 0 complete — ready to migrate"
 echo
 log "Phase 0 complete: groups=$GROUP_COUNT tasks=$TASK_COUNT env_keys=$ENV_KEYS"
 
-export NANOCLAW_V1_PATH="$V1_PATH"
-export NANOCLAW_V2_PATH="$PROJECT_ROOT"
+export NANOCLAWD_V1_PATH="$V1_PATH"
+export NANOCLAWD_V2_PATH="$PROJECT_ROOT"
 
 # ─── run_step helper ─────────────────────────────────────────────────────
 # Runs a TypeScript migration step, captures output, reports success/failure.
@@ -355,8 +355,8 @@ echo
 echo "$(bold 'Phase 2: Channels')"
 echo
 
-# Channel selection — clack multiselect (interactive) or NANOCLAW_CHANNELS env var.
-# NANOCLAW_CHANNELS accepts comma-separated channel names: "telegram,discord"
+# Channel selection — clack multiselect (interactive) or NANOCLAWD_CHANNELS env var.
+# NANOCLAWD_CHANNELS accepts comma-separated channel names: "telegram,discord"
 SELECTED_CHANNELS=()
 CHANNEL_SELECT_OUT="$STEPS_DIR/2a-channels-selected.txt"
 

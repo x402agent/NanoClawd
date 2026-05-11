@@ -12,11 +12,11 @@
 # github.com/qwibitai/nanoclawd and return that — keeps forks without an
 # explicit upstream configured working on the first try.
 #
-# Explicit override: set NANOCLAW_CHANNELS_REMOTE=<name> to skip detection.
+# Explicit override: set NANOCLAWD_CHANNELS_REMOTE=<name> to skip detection.
 
 resolve_channels_remote() {
-  if [ -n "${NANOCLAW_CHANNELS_REMOTE:-}" ]; then
-    printf '%s' "$NANOCLAW_CHANNELS_REMOTE"
+  if [ -n "${NANOCLAWD_CHANNELS_REMOTE:-}" ]; then
+    printf '%s' "$NANOCLAWD_CHANNELS_REMOTE"
     return 0
   fi
 

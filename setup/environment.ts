@@ -135,7 +135,7 @@ export async function run(_args: string[]): Promise<void> {
     HAS_ENV: hasEnv,
     HAS_AUTH: hasAuth,
     HAS_REGISTERED_GROUPS: hasRegisteredGroups,
-    OPENCLAW_PATH: openClawPath ?? 'none',
+    OPENCLAWD_PATH: openClawPath ?? 'none',
     STATUS: 'success',
     LOG: 'logs/setup.log',
   });

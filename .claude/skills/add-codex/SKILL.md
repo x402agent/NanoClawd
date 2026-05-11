@@ -132,7 +132,7 @@ Set `"provider": "codex"` in the group's **`container.json`** (`groups/<folder>/
 
 `CODEX_MODEL` applies process-wide via `.env`; if you need different models for different groups, set them via `container_config.env` on the group.
 
-Extra MCP servers still come from **`NANOCLAW_MCP_SERVERS`** / `container_config.mcpServers` on the host. The runner merges them into the same `mcpServers` object passed to all providers.
+Extra MCP servers still come from **`NANOCLAWD_MCP_SERVERS`** / `container_config.mcpServers` on the host. The runner merges them into the same `mcpServers` object passed to all providers.
 
 ## Operational notes
 

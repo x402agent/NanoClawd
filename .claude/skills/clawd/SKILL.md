@@ -124,8 +124,8 @@ Containers run with `--rm` so they are automatically removed. If the agent crash
 
 ### Override the NanoClawd directory
 
-If `clawd` can't find your database or `.env`, set the `NANOCLAW_DIR` environment variable:
+If `clawd` can't find your database or `.env`, set the `NANOCLAWD_DIR` environment variable:
 
 ```bash
-export NANOCLAW_DIR=/path/to/your/nanoclawd
+export NANOCLAWD_DIR=/path/to/your/nanoclawd
 ```

@@ -327,7 +327,7 @@ First, run without `--write-env` to preview:
 pnpm exec tsx ${CLAUDE_SKILL_DIR}/scripts/extract-channel-credentials.ts --state-dir <STATE_DIR> --channel <name>
 ```
 
-Parse the status block. Key fields: HAS_CREDENTIAL, CREDENTIAL_MASKED, NANOCLAW_ENV_VAR.
+Parse the status block. Key fields: HAS_CREDENTIAL, CREDENTIAL_MASKED, NANOCLAWD_ENV_VAR.
 
 **If HAS_CREDENTIAL=false but the user expects a credential:** The extraction script may not recognize the config structure. Fall back to reading the channel section of `openclawd.json` directly with the Read tool and look for any field that contains a token or key value. Ask the user to confirm.
 
@@ -346,7 +346,7 @@ The script writes the credential directly to `.env` using the correct NanoClawd 
 
 **Credential destination note:** Credentials are saved to `.env` for now. During `/setup`, the credential step will either keep them in `.env` (Apple Container) or migrate them to the OneCLI vault (Docker). The user doesn't need to worry about this now.
 
-For Slack: there are two credentials (bot token + app token). The script handles both in one run — check `HAS_CREDENTIAL_2` and `NANOCLAW_ENV_VAR_2` in the status block.
+For Slack: there are two credentials (bot token + app token). The script handles both in one run — check `HAS_CREDENTIAL_2` and `NANOCLAWD_ENV_VAR_2` in the status block.
 
 **WhatsApp special case:** WhatsApp uses QR/pairing-code authentication, not a token. Do not copy auth state from OpenClawd — encryption sessions become stale after copying and messages fail to decrypt. Authentication will be handled during `/setup` via the `/add-whatsapp` skill (takes about 60 seconds with a pairing code). Just note that WhatsApp was configured and move on.
 

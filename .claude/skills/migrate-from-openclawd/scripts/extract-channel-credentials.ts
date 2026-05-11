@@ -17,7 +17,7 @@
  * the target .env file so the agent never sees raw secrets.
  *
  * Emits a status block on stdout:
- *   === NANOCLAW MIGRATE: CREDENTIAL ===
+ *   === NANOCLAWD MIGRATE: CREDENTIAL ===
  *   ...
  *   === END ===
  */
@@ -76,7 +76,7 @@ function parseDotenv(filePath: string): Record<string, string> {
 // ---------------------------------------------------------------------------
 
 function emitStatus(fields: Record<string, string | number | boolean>): void {
-  const lines = ['=== NANOCLAW MIGRATE: CREDENTIAL ==='];
+  const lines = ['=== NANOCLAWD MIGRATE: CREDENTIAL ==='];
   for (const [key, value] of Object.entries(fields)) {
     lines.push(`${key}: ${value}`);
   }
@@ -444,7 +444,7 @@ function main(): void {
     HAS_CREDENTIAL: !!primary.resolved,
     CREDENTIAL_SOURCE: primary.source,
     CREDENTIAL_MASKED: primary.masked || 'none',
-    NANOCLAW_ENV_VAR: primary.envVar,
+    NANOCLAWD_ENV_VAR: primary.envVar,
   };
 
   if (writeEnv && written > 0) {
@@ -463,7 +463,7 @@ function main(): void {
       fields[`HAS_CREDENTIAL${suffix}`] = !!extra.resolved;
       fields[`CREDENTIAL_SOURCE${suffix}`] = extra.source;
       fields[`CREDENTIAL_MASKED${suffix}`] = extra.masked || 'none';
-      fields[`NANOCLAW_ENV_VAR${suffix}`] = extra.envVar;
+      fields[`NANOCLAWD_ENV_VAR${suffix}`] = extra.envVar;
       if (extra.note) {
         fields[`NOTE${suffix}`] = extra.note;
       }

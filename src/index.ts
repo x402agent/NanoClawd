@@ -17,6 +17,7 @@ import { startActiveDeliveryPoll, startSweepDeliveryPoll, setDeliveryAdapter, st
 import { startHostSweep, stopHostSweep } from './host-sweep.js';
 import { routeInbound } from './router.js';
 import { log } from './log.js';
+import { loadOperatorWallet, loadSolanaConfig } from './solana/index.js';
 
 // Response + shutdown registries live in response-registry.ts to break the
 // circular import cycle: src/index.ts imports src/modules/index.js for side
@@ -81,6 +82,19 @@ async function main(): Promise<void> {
 
   // 1c. One-time filesystem cutover — idempotent, no-op after first run.
   migrateGroupsToClaudeLocal();
+
+  // 1d. Solana operator wallet — log if configured, no-op otherwise.
+  const solanaCfg = loadSolanaConfig();
+  const operatorWallet = loadOperatorWallet();
+  if (operatorWallet) {
+    log.info('Solana operator wallet loaded', {
+      cluster: solanaCfg.cluster,
+      rpcUrl: solanaCfg.rpcUrl,
+      pubkey: operatorWallet.pubkey,
+    });
+  } else {
+    log.debug('Solana operator wallet not configured', { cluster: solanaCfg.cluster });
+  }
 
   // 2. Container runtime
   ensureContainerRuntimeRunning();

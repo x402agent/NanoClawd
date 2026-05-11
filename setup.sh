@@ -14,7 +14,7 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Default: write to the raw bootstrap log if nanoclawd.sh pointed us there,
 # else fall back to a dedicated bootstrap log (keeps standalone `bash
 # setup.sh` invocations working).
-LOG_FILE="${NANOCLAW_BOOTSTRAP_LOG:-${PROJECT_ROOT}/logs/bootstrap.log}"
+LOG_FILE="${NANOCLAWD_BOOTSTRAP_LOG:-${PROJECT_ROOT}/logs/bootstrap.log}"
 
 mkdir -p "$(dirname "$LOG_FILE")"
 
@@ -222,7 +222,7 @@ ph_event setup_start \
   status="$STATUS"
 
 cat <<EOF
-=== NANOCLAW SETUP: BOOTSTRAP ===
+=== NANOCLAWD SETUP: BOOTSTRAP ===
 PLATFORM: $PLATFORM
 IS_WSL: $IS_WSL
 IS_ROOT: $IS_ROOT

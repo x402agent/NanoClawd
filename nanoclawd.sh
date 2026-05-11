@@ -16,7 +16,7 @@
 #   3. Raw per-step log  — logs/setup-steps/NN-name.log (full verbatim output)
 #
 # Config via env — passed through unchanged:
-#   NANOCLAW_SKIP  comma-separated setup:auto step names to skip
+#   NANOCLAWD_SKIP  comma-separated setup:auto step names to skip
 #   SECRET_NAME    OneCLI secret name (default: Anthropic)
 #   HOST_PATTERN   OneCLI host pattern (default: api.anthropic.com)
 
@@ -134,7 +134,7 @@ write_header
 # assets/setup-splash.txt (built from assets/nanoclawd-icon.png via chafa +
 # figlet); the bash script just streams the literal frame. clack's intro
 # then carries the "let's get you set up" framing — setup:auto sees
-# NANOCLAW_BOOTSTRAPPED=1 and skips re-printing the wordmark.
+# NANOCLAWD_BOOTSTRAPPED=1 and skips re-printing the wordmark.
 cat "$PROJECT_ROOT/assets/setup-splash.txt"
 
 # ─── pre-flight: minimum hardware specs ────────────────────────────────
@@ -309,7 +309,7 @@ BOOTSTRAP_EXIT_FILE=$(mktemp -t nanoclawd-bootstrap-exit.XXXXXX)
 (
   # setup.sh's legacy `log()` writes to a file; point it at the raw log
   # so its verbose entries land alongside the stdout we're capturing.
-  export NANOCLAW_BOOTSTRAP_LOG="$BOOTSTRAP_RAW"
+  export NANOCLAWD_BOOTSTRAP_LOG="$BOOTSTRAP_RAW"
   if bash setup.sh > "$BOOTSTRAP_RAW" 2>&1; then
     echo 0 > "$BOOTSTRAP_EXIT_FILE"
   else
@@ -350,10 +350,10 @@ fi
 
 # ─── hand off to setup:auto ────────────────────────────────────────────
 
-# NANOCLAW_BOOTSTRAPPED=1 tells setup/auto.ts to skip the wordmark (we
+# NANOCLAWD_BOOTSTRAPPED=1 tells setup/auto.ts to skip the wordmark (we
 # already printed it) and to append to the progression log rather than
 # wipe it.
-export NANOCLAW_BOOTSTRAPPED=1
+export NANOCLAWD_BOOTSTRAPPED=1
 
 # setup.sh may have just installed pnpm via npm into a prefix that's not on
 # our PATH (custom `npm config set prefix`, or the default prefix missing

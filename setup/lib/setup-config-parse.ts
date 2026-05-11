@@ -155,7 +155,7 @@ export function printHelp(stream: NodeJS.WritableStream = process.stdout): void 
     lines.push(`  ${flag}${e.help}`);
   }
   lines.push('');
-  lines.push('Each flag also reads from its corresponding NANOCLAW_<KEY> env var.');
+  lines.push('Each flag also reads from its corresponding NANOCLAWD_<KEY> env var.');
   lines.push('Run without flags for the default interactive flow.');
   stream.write(lines.join('\n') + '\n');
 }

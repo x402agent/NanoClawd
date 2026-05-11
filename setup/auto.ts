@@ -7,12 +7,12 @@
  * `setup/lib/theme.ts`; Telegram's full flow in `setup/channels/telegram.ts`.
  *
  * Config via env:
- *   NANOCLAW_DISPLAY_NAME  how the agents address the operator — skips the
+ *   NANOCLAWD_DISPLAY_NAME  how the agents address the operator — skips the
  *                          prompt. Defaults to $USER.
- *   NANOCLAW_AGENT_NAME    messaging-channel agent name (consumed by the
+ *   NANOCLAWD_AGENT_NAME    messaging-channel agent name (consumed by the
  *                          channel flow). The CLI scratch agent is always
  *                          "Terminal Agent".
- *   NANOCLAW_SKIP          comma-separated step names to skip
+ *   NANOCLAWD_SKIP          comma-separated step names to skip
  *                          (environment|container|onecli|auth|mounts|
  *                           service|cli-agent|timezone|channel|
  *                           verify|first-chat)
@@ -73,7 +73,7 @@ async function main(): Promise<void> {
 
   // Parse CLI flags first — `--help` short-circuits before we render anything,
   // and flag values get folded into process.env so existing step code reading
-  // NANOCLAW_* sees them unchanged.
+  // NANOCLAWD_* sees them unchanged.
   const flagResult = parseFlags(process.argv.slice(2));
   if (flagResult.help) {
     printHelp();
@@ -96,7 +96,7 @@ async function main(): Promise<void> {
   // work begins. Default lands on standard so Enter is the happy path.
   // On sg re-exec, the user already chose — skip straight to standard.
   let startChoice: 'default' | 'advanced' = 'default';
-  if (process.env.NANOCLAW_REEXEC_SG !== '1') {
+  if (process.env.NANOCLAWD_REEXEC_SG !== '1') {
     startChoice = ensureAnswer(
       await brightSelect<'default' | 'advanced'>({
         message: 'How would you like to begin?',
@@ -115,7 +115,7 @@ async function main(): Promise<void> {
   }
 
   const skip = new Set(
-    (process.env.NANOCLAW_SKIP ?? '')
+    (process.env.NANOCLAWD_SKIP ?? '')
       .split(',')
       .map((s) => s.trim())
       .filter(Boolean),
@@ -185,7 +185,7 @@ async function main(): Promise<void> {
       ),
     );
 
-    const remoteHost = process.env.NANOCLAW_ONECLI_API_HOST?.trim();
+    const remoteHost = process.env.NANOCLAWD_ONECLI_API_HOST?.trim();
 
     if (remoteHost) {
       // Advanced-settings override: user has already named a remote vault,
@@ -317,7 +317,7 @@ async function main(): Promise<void> {
   let displayName: string | undefined;
   async function resolveDisplayName(): Promise<string> {
     if (displayName) return displayName;
-    const preset = process.env.NANOCLAW_DISPLAY_NAME?.trim();
+    const preset = process.env.NANOCLAWD_DISPLAY_NAME?.trim();
     const existing = detectExistingDisplayName(process.cwd());
     const fallback = process.env.USER?.trim() || 'Operator';
     displayName = preset || existing || (await askDisplayName(fallback));
@@ -714,8 +714,8 @@ async function runAuthStep(): Promise<void> {
   // Custom Anthropic-compatible endpoint flow. Both URL and token must be set;
   // OneCLI stores the token as a generic Bearer secret keyed to the URL host,
   // so the container only ever sees ANTHROPIC_BASE_URL + a placeholder.
-  const customBaseUrl = process.env.NANOCLAW_ANTHROPIC_BASE_URL?.trim();
-  const customAuthToken = process.env.NANOCLAW_ANTHROPIC_AUTH_TOKEN?.trim();
+  const customBaseUrl = process.env.NANOCLAWD_ANTHROPIC_BASE_URL?.trim();
+  const customAuthToken = process.env.NANOCLAWD_ANTHROPIC_AUTH_TOKEN?.trim();
   if (customBaseUrl && customAuthToken) {
     await runCustomEndpointAuth(customBaseUrl, customAuthToken);
     return;
@@ -1239,7 +1239,7 @@ function runInheritScript(cmd: string, args: string[]): Promise<number> {
  * so the rest of the run inherits the docker group without a re-login.
  */
 function maybeReexecUnderSg(): void {
-  if (process.env.NANOCLAW_REEXEC_SG === '1') return;
+  if (process.env.NANOCLAWD_REEXEC_SG === '1') return;
   if (process.platform !== 'linux') return;
   const info = spawnSync('docker', ['info'], { encoding: 'utf-8' });
   if (info.status === 0) return;
@@ -1248,11 +1248,11 @@ function maybeReexecUnderSg(): void {
   if (spawnSync('which', ['sg'], { stdio: 'ignore' }).status !== 0) return;
 
   p.log.warn(brandBody('Docker socket not accessible in current group. Re-executing under `sg docker`.'));
-  const existingSkip = (process.env.NANOCLAW_SKIP ?? '').split(',').map((s) => s.trim()).filter(Boolean);
+  const existingSkip = (process.env.NANOCLAWD_SKIP ?? '').split(',').map((s) => s.trim()).filter(Boolean);
   const skipList = [...new Set([...existingSkip, ...setupLog.completedStepNames()])].join(',');
   const res = spawnSync('sg', ['docker', '-c', 'pnpm run setup:auto'], {
     stdio: 'inherit',
-    env: { ...process.env, NANOCLAW_REEXEC_SG: '1', ...(skipList ? { NANOCLAW_SKIP: skipList } : {}) },
+    env: { ...process.env, NANOCLAWD_REEXEC_SG: '1', ...(skipList ? { NANOCLAWD_SKIP: skipList } : {}) },
   });
   process.exit(res.status ?? 1);
 }
@@ -1260,7 +1260,7 @@ function maybeReexecUnderSg(): void {
 // ─── intro + progression-log init ──────────────────────────────────────
 
 function printIntro(): void {
-  const isReexec = process.env.NANOCLAW_REEXEC_SG === '1';
+  const isReexec = process.env.NANOCLAWD_REEXEC_SG === '1';
   const wordmark = `${k.bold('Nano')}${brandBold('Clawd')}`;
 
   if (isReexec) {
@@ -1282,7 +1282,7 @@ function printIntro(): void {
  * append to a stale one from a previous run.
  */
 function initProgressionLog(): void {
-  if (process.env.NANOCLAW_BOOTSTRAPPED === '1') return;
+  if (process.env.NANOCLAWD_BOOTSTRAPPED === '1') return;
   let commit = '';
   try {
     commit = spawnSync('git', ['rev-parse', '--short', 'HEAD'], {

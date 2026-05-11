@@ -40,11 +40,11 @@ def _find_nanoclawd_dir() -> Path:
     """Locate the NanoClawd installation directory.
 
     Resolution order:
-    1. NANOCLAW_DIR env var
+    1. NANOCLAWD_DIR env var
     2. The directory containing this script (if it looks like a NanoClawd install)
     3. ~/src/nanoclawd (legacy default)
     """
-    if env := os.environ.get("NANOCLAW_DIR"):
+    if env := os.environ.get("NANOCLAWD_DIR"):
         return Path(env).expanduser()
     # If this script lives inside the NanoClawd tree (e.g. scripts/clawd), walk up
     here = Path(__file__).resolve()
@@ -53,9 +53,9 @@ def _find_nanoclawd_dir() -> Path:
             return parent
     return Path.home() / "src" / "nanoclawd"
 
-NANOCLAW_DIR = _find_nanoclawd_dir()
-DB_PATH      = NANOCLAW_DIR / "store" / "messages.db"
-ENV_FILE     = NANOCLAW_DIR / ".env"
+NANOCLAWD_DIR = _find_nanoclawd_dir()
+DB_PATH      = NANOCLAWD_DIR / "store" / "messages.db"
+ENV_FILE     = NANOCLAWD_DIR / ".env"
 IMAGE        = "nanoclawd-agent:latest"
 
 SECRET_KEYS = [
@@ -123,8 +123,8 @@ def find_group(groups: list[dict], query: str) -> dict | None:
 
 def build_mounts(folder: str, is_main: bool) -> list[tuple[str, str, bool]]:
     """Return list of (host_path, container_path, readonly) tuples."""
-    groups_dir  = NANOCLAW_DIR / "groups"
-    data_dir    = NANOCLAW_DIR / "data"
+    groups_dir  = NANOCLAWD_DIR / "groups"
+    data_dir    = NANOCLAWD_DIR / "data"
     sessions_dir = data_dir / "sessions" / folder
     ipc_dir     = data_dir / "ipc" / folder
 
@@ -136,14 +136,14 @@ def build_mounts(folder: str, is_main: bool) -> list[tuple[str, str, bool]]:
         (ipc_dir / sub).mkdir(parents=True, exist_ok=True)
 
     agent_runner_src = sessions_dir / "agent-runner-src"
-    project_agent_runner = NANOCLAW_DIR / "container" / "agent-runner" / "src"
+    project_agent_runner = NANOCLAWD_DIR / "container" / "agent-runner" / "src"
     if not agent_runner_src.exists() and project_agent_runner.exists():
         import shutil
         shutil.copytree(project_agent_runner, agent_runner_src)
 
     mounts: list[tuple[str, str, bool]] = []
     if is_main:
-        mounts.append((str(NANOCLAW_DIR), "/workspace/project", True))
+        mounts.append((str(NANOCLAWD_DIR), "/workspace/project", True))
     mounts.append((str(group_dir),           "/workspace/group",    False))
     mounts.append((str(sessions_dir / ".claude"), "/home/node/.claude", False))
     mounts.append((str(ipc_dir),             "/workspace/ipc",      False))
@@ -203,7 +203,7 @@ def run_container(runtime: str, image: str, payload: dict,
             dbg(f"stdout: {line}")
             # Kill the container as soon as we see the closing sentinel —
             # the Node.js event loop often keeps the process alive indefinitely.
-            if line.strip() == "---NANOCLAW_OUTPUT_END---":
+            if line.strip() == "---NANOCLAWD_OUTPUT_END---":
                 dbg("output sentinel found, terminating container")
                 done.set()
                 try:
@@ -238,7 +238,7 @@ def run_container(runtime: str, image: str, payload: dict,
 
     # Parse output block
     match = re.search(
-        r"---NANOCLAW_OUTPUT_START---\n(.*?)\n---NANOCLAW_OUTPUT_END---",
+        r"---NANOCLAWD_OUTPUT_START---\n(.*?)\n---NANOCLAWD_OUTPUT_END---",
         stdout,
         re.DOTALL,
     )

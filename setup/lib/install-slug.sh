@@ -11,7 +11,7 @@
 # halves of setup name things consistently.
 
 _nanoclawd_install_slug() {
-  local root="${NANOCLAW_PROJECT_ROOT:-${PROJECT_ROOT:-$PWD}}"
+  local root="${NANOCLAWD_PROJECT_ROOT:-${PROJECT_ROOT:-$PWD}}"
   if command -v shasum >/dev/null 2>&1; then
     printf '%s' "$root" | shasum | cut -c 1-8
   elif command -v sha1sum >/dev/null 2>&1; then

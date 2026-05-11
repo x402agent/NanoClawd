@@ -44,7 +44,7 @@ logs/migrate-steps/*.log             # Per-step raw output
 bash migrate-v2-reset.sh
 
 # Run migration with non-interactive channel selection
-NANOCLAW_CHANNELS="telegram" bash migrate-v2.sh
+NANOCLAWD_CHANNELS="telegram" bash migrate-v2.sh
 
 # Or run interactively (clack multiselect)
 bash migrate-v2.sh

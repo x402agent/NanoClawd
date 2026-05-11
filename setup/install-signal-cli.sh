@@ -17,7 +17,7 @@ INSTALL_DIR="${HOME}/.local/bin"
 
 emit_status() {
   local status=$1 error=${2:-}
-  echo "=== NANOCLAW SETUP: INSTALL_SIGNAL_CLI ==="
+  echo "=== NANOCLAWD SETUP: INSTALL_SIGNAL_CLI ==="
   echo "STATUS: ${status}"
   [ -n "$error" ] && echo "ERROR: ${error}"
   echo "=== END ==="

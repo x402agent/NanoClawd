@@ -3,12 +3,12 @@
  *
  * Usage: pnpm exec tsx .claude/skills/migrate-from-openclawd/scripts/discover-openclawd.ts [--state-dir <path>]
  *
- * Checks (in order): --state-dir arg, $OPENCLAW_STATE_DIR, ~/.openclawd, ~/.clawdbot
+ * Checks (in order): --state-dir arg, $OPENCLAWD_STATE_DIR, ~/.openclawd, ~/.clawdbot
  * Parses openclawd.json (JSON5-tolerant), scans workspace for identity/memory files,
  * checks cron jobs, MCP servers, and channel credentials.
  *
  * Emits a status block on stdout:
- *   === NANOCLAW MIGRATE: DISCOVERY ===
+ *   === NANOCLAWD MIGRATE: DISCOVERY ===
  *   ...
  *   === END ===
  */
@@ -42,7 +42,7 @@ function parseJson5(text: string): unknown {
 // ---------------------------------------------------------------------------
 
 function emitStatus(fields: Record<string, string | number | boolean>): void {
-  const lines = ['=== NANOCLAW MIGRATE: DISCOVERY ==='];
+  const lines = ['=== NANOCLAWD MIGRATE: DISCOVERY ==='];
   for (const [key, value] of Object.entries(fields)) {
     lines.push(`${key}: ${value}`);
   }
@@ -80,8 +80,8 @@ function resolveStateDir(explicit?: string): string | null {
     candidates.push(expanded);
   }
 
-  if (process.env.OPENCLAW_STATE_DIR) {
-    candidates.push(process.env.OPENCLAW_STATE_DIR);
+  if (process.env.OPENCLAWD_STATE_DIR) {
+    candidates.push(process.env.OPENCLAWD_STATE_DIR);
   }
 
   candidates.push(path.join(home, '.openclawd'));

@@ -140,7 +140,7 @@ installer invoked from `auto.ts`), it must:
    `STATUS: success|skipped|failed` and any step-specific fields:
 
    ```
-   === NANOCLAW SETUP: STEP_NAME ===
+   === NANOCLAWD SETUP: STEP_NAME ===
    STATUS: success
    KEY: value
    KEY: value

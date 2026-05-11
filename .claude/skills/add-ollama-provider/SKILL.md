@@ -43,7 +43,7 @@ blockedHosts: raw.blockedHosts,
 
 ### 1b. Wire into container-runner
 
-In `src/container-runner.ts`, after the `NANOCLAW_MCP_SERVERS` block, add:
+In `src/container-runner.ts`, after the `NANOCLAWD_MCP_SERVERS` block, add:
 
 ```typescript
 // Per-agent-group env overrides — applied last to win over OneCLI values.

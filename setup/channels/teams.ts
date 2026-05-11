@@ -475,7 +475,7 @@ async function stepGenerateManifest(args: {
     );
   }
   const shortName =
-    process.env.NANOCLAW_AGENT_NAME?.trim() || 'NanoClawd';
+    process.env.NANOCLAWD_AGENT_NAME?.trim() || 'NanoClawd';
 
   const s = p.spinner();
   s.start('Generating your Teams app package…');

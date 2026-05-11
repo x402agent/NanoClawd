@@ -17,7 +17,7 @@
  *      in a clack note, then hand off to `setup/run-suggested.sh` for
  *      editable pre-fill + exec.
  *
- * Skippable with NANOCLAW_SKIP_CLAUDE_ASSIST=1 for CI/scripted runs.
+ * Skippable with NANOCLAWD_SKIP_CLAUDE_ASSIST=1 for CI/scripted runs.
  */
 import { execSync, spawn, spawnSync } from 'child_process';
 import fs from 'fs';
@@ -93,7 +93,7 @@ export async function offerClaudeAssist(
   ctx: AssistContext,
   projectRoot: string = process.cwd(),
 ): Promise<boolean> {
-  if (process.env.NANOCLAW_SKIP_CLAUDE_ASSIST === '1') return false;
+  if (process.env.NANOCLAWD_SKIP_CLAUDE_ASSIST === '1') return false;
   if (!(await ensureClaudeReady(projectRoot))) return false;
 
   const want = ensureAnswer(
