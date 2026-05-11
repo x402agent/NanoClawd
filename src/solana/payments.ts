@@ -21,15 +21,10 @@ export type PaymentReceipt = {
   readonly txSignature: SignatureBase58 | null;
 };
 
-export async function recordPaymentReceipt(
-  receipt: Omit<PaymentReceipt, 'txSignature'>,
-): Promise<PaymentReceipt> {
+export async function recordPaymentReceipt(receipt: Omit<PaymentReceipt, 'txSignature'>): Promise<PaymentReceipt> {
   return { ...receipt, txSignature: null };
 }
 
-export async function fetchSpendInWindow(
-  _agentGroupId: string,
-  _windowSeconds: number,
-): Promise<Lamports> {
+export async function fetchSpendInWindow(_agentGroupId: string, _windowSeconds: number): Promise<Lamports> {
   return 0n as Lamports;
 }

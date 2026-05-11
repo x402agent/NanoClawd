@@ -32,21 +32,14 @@ function parseCluster(raw: string | undefined): SolanaCluster {
 }
 
 export function loadSolanaConfig(): SolanaConfig {
-  const envValues = readEnvFile([
-    'SOLANA_CLUSTER',
-    'SOLANA_RPC_URL',
-    'SOLANA_WS_URL',
-    'SOLANA_OPERATOR_KEYPAIR',
-  ]);
+  const envValues = readEnvFile(['SOLANA_CLUSTER', 'SOLANA_RPC_URL', 'SOLANA_WS_URL', 'SOLANA_OPERATOR_KEYPAIR']);
   const raw = envValues.SOLANA_CLUSTER;
   const cluster = parseCluster(raw);
   const explicitRpc = envValues.SOLANA_RPC_URL;
 
   const rpcUrl =
     explicitRpc ??
-    (cluster === 'custom'
-      ? (raw as string)
-      : CLUSTER_RPC_DEFAULTS[cluster as Exclude<SolanaCluster, 'custom'>]);
+    (cluster === 'custom' ? (raw as string) : CLUSTER_RPC_DEFAULTS[cluster as Exclude<SolanaCluster, 'custom'>]);
 
   return {
     cluster,

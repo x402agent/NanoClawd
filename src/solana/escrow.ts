@@ -21,14 +21,10 @@ export type EscrowState = {
   readonly authority: SolanaAddress;
 };
 
-export async function deriveEscrowVaultAddress(
-  _agentGroupId: string,
-): Promise<SolanaAddress> {
+export async function deriveEscrowVaultAddress(_agentGroupId: string): Promise<SolanaAddress> {
   throw new Error('deriveEscrowVaultAddress: not implemented (Solana scaffold)');
 }
 
-export async function fetchEscrowState(
-  _agentGroupId: string,
-): Promise<EscrowState | null> {
+export async function fetchEscrowState(_agentGroupId: string): Promise<EscrowState | null> {
   return null;
 }
