@@ -63,6 +63,16 @@ ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium
 # ~300MB Chromium. We've already installed the system one above.
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
+# ---- Browser Use Cloud support -------------------------------------------------
+# Install browser-harness-js (Bun-based CDP CLI) when BUILD_BROWSER_HARNESS=true.
+# This provides typed CDP access to Browser Use Cloud sessions (persistent,
+# profile-backed, with live URL handoff). Without it, only the local Chromium
+# agent-browser CLI is available, which has no persistent session or live view.
+ARG BUILD_BROWSER_HARNESS=false
+RUN if [ "$BUILD_BROWSER_HARNESS" = "true" ]; then \
+        npm install -g browser-harness-js; \
+    fi
+
 # ---- Bun runtime -------------------------------------------------------------
 # Install via the official script (handles multi-arch detection), then move
 # the binary to /usr/local/bin so the non-root `node` user can execute it.

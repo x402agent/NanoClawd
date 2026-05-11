@@ -51,9 +51,30 @@ async function main(): Promise<void> {
   // /workspace/agent/CLAUDE.md — the composed entry imports the shared
   // base (/app/CLAUDE.md) and each enabled module's fragment. Per-group
   // memory lives in /workspace/agent/CLAUDE.local.md (auto-loaded).
-  const instructions = buildSystemPromptAddendum(config.assistantName || undefined);
+  let instructions = buildSystemPromptAddendum(config.assistantName || undefined);
+
+  // Three Laws constitution — injected from the leviathan skill when present.
+  // The constitution is the only prompt element that survives self-modification
+  // by the agent, so it's injected here at the runtime layer rather than in
+  // CLAUDE.md where the agent could edit it.
+  const constitutionPath = '/app/skills/leviathan/SKILL.md';
+  if (fs.existsSync(constitutionPath)) {
+    try {
+      const raw = fs.readFileSync(constitutionPath, 'utf8');
+      // Extract the Three Laws section (between the first ## heading and the
+      // next top-level heading, or end-of-file). This is the immutable part.
+      const lawMatch = raw.match(/## The Three Laws[\s\S]*?(?=\n## |\n---|$)/);
+      if (lawMatch) {
+        instructions += '\n\n' + lawMatch[0].trim();
+        log('Three Laws constitution appended to system prompt');
+      }
+    } catch {
+      log('Could not read constitution — continuing without');
+    }
+  }
 
   // Discover additional directories mounted at /workspace/extra/*
+
   const additionalDirectories: string[] = [];
   const extraBase = '/workspace/extra';
   if (fs.existsSync(extraBase)) {
