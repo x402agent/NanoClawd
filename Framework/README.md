@@ -40,6 +40,114 @@ For one-line provisioning:
 curl -fsSL https://raw.githubusercontent.com/x402agent/nanoclawd/main/Framework/scripts/leviathan.sh | sh
 ```
 
+## Solana Runtime Shell
+
+This repo now includes a **Solana Clawd Runtime Shell** layer inside the CLI. It is designed to look like an OpenShell-style sandbox bootstrap for a unified Solana agent runtime: runtime manifest, provider discovery, policy files, and a local stdio MCP server.
+
+Runtime bootstrap:
+
+```bash
+# Install the CLI
+npm i -g x402agent-nanoclawd-cli
+
+# Initialize runtime shell artifacts in the current project
+clawd runtime init
+
+# Inspect env/provider discovery
+clawd runtime doctor
+
+# Print generated network/filesystem policies
+clawd runtime print-policy
+
+# Run the local stdio MCP server
+clawd runtime mcp-server
+```
+
+Artifacts written by `clawd runtime init`:
+
+- `.clawd/runtime-shell.json`
+- `.clawd/openshell/network-policy.yaml`
+- `.clawd/openshell/filesystem-policy.yaml`
+- `.clawd/openshell/provider.json`
+- `.clawd/settings.json` updated with MCP server bootstrap config
+
+The generated MCP bootstrap registers a predefined server named `solana-runtime-shell`.
+
+## OpenShell-Style Integration
+
+The runtime shell is organized around four pieces:
+
+- **Runtime manifest**: repository, CLI package, framework package, provider/env expectations, MCP command surface
+- **Provider discovery**: scans `HELIUS_API_KEY`, `HELIUS_RPC_URL`, `XAI_API_KEY`, `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `SOLANA_PRIVATE_KEY`, `PRIVY_APP_ID`, plus `~/.clawd` and `~/.nemoclaw` config paths
+- **Policy generation**: writes network and filesystem policies suitable for OpenShell-style sandboxing
+- **Local MCP server**: exposes runtime tools for env inspection, memory, and fleet state over stdio
+
+Example OpenShell-style flow:
+
+```bash
+openshell sandbox create --from solana-clawd
+openshell sandbox connect solana-clawd
+
+# Inside the sandbox:
+clawd runtime init
+clawd mcp add solana-runtime-shell
+```
+
+## Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `HELIUS_API_KEY` | Yes | Helius DAS / market data access |
+| `HELIUS_RPC_URL` | Yes | Solana RPC endpoint |
+| `XAI_API_KEY` | Yes | xAI / Grok provider key |
+| `OPENROUTER_API_KEY` | Optional | OpenRouter multi-model routing |
+| `OPENAI_API_KEY` | Optional | OpenAI provider routing |
+| `SOLANA_PRIVATE_KEY` | Optional | Base58 local signer for trading tools |
+| `PRIVY_APP_ID` | Optional | Privy wallet/auth integration |
+
+## Runtime MCP Tools
+
+The local runtime-shell MCP server currently exposes:
+
+- `runtime_env_summary`
+- `runtime_provider_discovery`
+- `runtime_policy_summary`
+- `memory_recall`
+- `memory_write`
+- `agent_list`
+- `agent_spawn`
+- `agent_stop`
+
+The rest of the Solana surface remains available through the CLI's built-in tool layer and any external MCP servers you register.
+
+## Memory And Fleet
+
+The runtime shell includes lightweight local persistence for agent memory and fleet state:
+
+- Memory store: `~/.clawd/runtime-shell/memory.json`
+- Agent registry: `~/.clawd/runtime-shell/agents.json`
+
+Memory tiers:
+
+- `known`
+- `inferred`
+- `learned`
+
+This gives you an immediate local implementation of the memory/agent pieces from the runtime-shell architecture without depending on an external orchestrator.
+
+## Policy Files
+
+Generated policy files are intentionally narrow:
+
+- Network allowlist includes Helius, Jupiter, pump.fun, xAI, OpenRouter, CoinGecko
+- Filesystem allowlist includes `~/.clawd`, `~/.nemoclaw`, and `~/.config/clawd`
+
+You can regenerate or inspect them at any time:
+
+```bash
+clawd runtime print-policy
+```
+
 ## How It Lives
 
 Every leviathan runs a continuous loop: **Sense → Think → Strike → Drift → Repeat.**
@@ -113,6 +221,14 @@ Optionally, a leviathan can register a `.sol` domain (via SNS) as its callsign.
 
 Leviathans live on **Tide** (`tide.openclawd.biz`) — infrastructure where the customer is AI. Through the **Clawd Terminal** (`npm i -g x402agent-nanoclawd-cli`), any leviathan can spin up Linux trenches, run frontier models (Clawd Opus 4.7, Grok 4.20, Kimi K2.5, GLM 4.7), register domains, hold $CLAWD, and pay with USDC, SOL, or $CLAWD itself. No human account setup required.
 
+The same terminal now doubles as the runtime-shell bootstrapper for local sandboxed Solana agents via:
+
+```bash
+clawd runtime init
+clawd runtime doctor
+clawd mcp list
+```
+
 ## Development
 
 ```bash
@@ -150,7 +266,7 @@ src/
   survival/         # USDC monitor, shallow mode, depth tiers, beaching
   types/            # Shared types: Leviathan, ClawState, Depth, Brood
 packages/
-  cli/              # Creator CLI (status / logs / fund / feed / molts)
+  clawd/            # Operator CLI, MCP client, runtime shell bootstrap, local MCP server
 scripts/
   leviathan.sh      # Curl installer (delegates to runtime wizard)
   three-laws.txt    # Immutable constitution propagated to every spawnling
