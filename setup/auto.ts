@@ -101,8 +101,8 @@ async function main(): Promise<void> {
       await brightSelect<'default' | 'advanced'>({
         message: 'How would you like to begin?',
         options: [
-          { value: 'default', label: 'Standard setup' },
-          { value: 'advanced', label: 'Advanced', hint: 'override defaults' },
+          { value: 'default', label: 'Set sail', hint: 'recommended' },
+          { value: 'advanced', label: 'Chart your own course', hint: 'override defaults' },
         ],
         initialValue: 'default',
       }),
@@ -136,17 +136,17 @@ async function main(): Promise<void> {
   }
 
   if (!skip.has('container')) {
-    p.log.message(brandBody(dimWrap('Your assistant lives in its own sandbox. It can only see what you explicitly share.', 4)));
+    p.log.message(brandBody(dimWrap("Your agent lives in a secure sandbox — it sees only what you explicitly share. This keeps your machine safe while giving your clawd full access to the tools it needs.", 4)));
     p.log.message(
       brandBody(
         dimWrap(
-          'The first build pulls a base image and installs a few tools. On a fresh machine this usually takes 3–10 minutes.',
+          "The first build pulls a base image and installs the crew's gear. On a fresh machine this usually takes 3–10 minutes.",
           4,
         ),
       ),
     );
     const res = await runWindowedStep('container', {
-      running: "Preparing your assistant's sandbox…",
+      running: "Preparing your agent's sandbox…",
       done: 'Sandbox ready.',
       failed: "Couldn't prepare the sandbox.",
     });
@@ -179,7 +179,7 @@ async function main(): Promise<void> {
     p.log.message(
       brandBody(
         dimWrap(
-          'Your assistant never gets your API keys directly. The vault adds them to approved requests as they leave the sandbox.',
+          'Your clawd never sees your API keys directly. The vault slips them onto approved requests as they leave the sandbox.',
           4,
         ),
       ),
@@ -285,7 +285,7 @@ async function main(): Promise<void> {
     const res = await runQuietStep(
       'mounts',
       {
-        running: "Setting your assistant's access rules…",
+        running: "Setting your clawd's access rules…",
         done: 'Access rules set.',
         skipped: 'Access rules already set.',
       },
@@ -334,15 +334,15 @@ async function main(): Promise<void> {
     const res = await runQuietStep(
       'cli-agent',
       {
-        running: 'Bringing your assistant online…',
-        done: 'Assistant wired up.',
+        running: 'Bringing your clawd online…',
+        done: 'Clawd is aboard.',
       },
       ['--display-name', displayName!, '--agent-name', CLI_AGENT_NAME, '--folder', '_ping-test'],
     );
     if (!res.ok) {
       await fail(
         'cli-agent',
-        "Couldn't bring your assistant online.",
+        "Couldn't bring your clawd online.",
         `You can retry later with \`pnpm exec tsx scripts/init-cli-agent.ts --display-name "${displayName!}" --agent-name "${CLI_AGENT_NAME}"\`.`,
       );
     }
@@ -350,7 +350,7 @@ async function main(): Promise<void> {
       p.log.message(
         brandBody(
           dimWrap(
-            "Your assistant runs in an isolated sandbox. I'm going to send it a quick test message (ping) and wait for a reply (pong) to confirm it's responding. First startup typically takes 30–60 seconds while the sandbox warms up.",
+            "Your clawd runs in an isolated sandbox. I'm going to send it a quick ping and wait for a reply (pong) to confirm it's responding. First startup typically takes 30–60 seconds while the sandbox warms up.",
             4,
           ),
         ),
@@ -421,7 +421,7 @@ async function main(): Promise<void> {
           msg:
             ping === 'socket_error'
               ? "NanoClawd service isn't listening on its CLI socket."
-              : 'No reply from the assistant within 30 seconds.',
+              : 'No reply from your clawd within 30 seconds.',
           hint:
             ping === 'socket_error'
               ? 'Socket at data/cli.sock did not accept a connection.'
@@ -567,7 +567,7 @@ async function main(): Promise<void> {
     // that the welcome-message signal was too easy to miss. Use p.note so it
     // renders with a visible box, cyan-bold the directive line, and put it
     // as the last thing before outro.
-    note(`${brandBold('→')} ${k.bold(`Check your ${dmTarget} — your assistant is saying hi.`)}`, 'Go say hi');
+    note(`${brandBold('→')} ${k.bold(`Check your ${dmTarget} — your clawd is saying hi.`)}`, 'Go say hi');
     p.outro(k.green("You're set."));
   } else {
     p.outro(k.green("You're ready! Chat with `pnpm run chat hi`."));
@@ -607,7 +607,7 @@ function channelDmLabel(choice: ChannelChoice): string | null {
 async function confirmAssistantResponds(): Promise<PingResult> {
   const s = p.spinner();
   const start = Date.now();
-  const label = 'Waking your assistant…';
+  const label = 'Waking your clawd…';
   s.start(fitToWidth(label, ' (99m 59s)'));
   const tick = setInterval(() => {
     const suffix = ` (${fmtDuration(Date.now() - start)})`;
@@ -619,10 +619,10 @@ async function confirmAssistantResponds(): Promise<PingResult> {
   clearInterval(tick);
   const suffix = ` (${fmtDuration(Date.now() - start)})`;
   if (result === 'ok') {
-    s.stop(`${k.bold(fitToWidth('Your assistant is ready.', suffix))}${k.dim(suffix)}`);
+    s.stop(`${k.bold(fitToWidth('Your clawd is awake.', suffix))}${k.dim(suffix)}`);
   } else {
     const msg =
-      result === 'socket_error' ? "Couldn't reach the NanoClawd service." : "Your assistant didn't reply in time.";
+      result === 'socket_error' ? "Couldn't reach the NanoClawd service." : "Your clawd didn't reply in time.";
     s.stop(`${k.bold(fitToWidth(msg, suffix))}${k.dim(suffix)}`, 1);
   }
   return result;
@@ -640,10 +640,10 @@ function renderPingFailureNote(result: PingResult): void {
           `  macOS:  launchctl kickstart -k gui/$(id -u)/${getLaunchdLabel()}`,
           `  Linux:  systemctl --user restart ${getSystemdUnit()}`,
         ].join('\n')
-      : wrapForGutter(
-          'No reply from your assistant within 30 seconds. Check `logs/nanoclawd.log` for clues, then try `pnpm run chat hi`.',
-          6,
-        );
+          : wrapForGutter(
+              'No reply from your clawd within 30 seconds. Check `logs/nanoclawd.log` for clues, then try `pnpm run chat hi`.',
+              6,
+            );
   note(body, 'Skipping the first chat');
 }
 
@@ -662,7 +662,7 @@ async function runFirstChat(): Promise<void> {
   note(
     wrapForGutter(
       [
-        'Your assistant runs in a sandbox on this machine.',
+        'Your clawd runs in a sandbox on this machine.',
         'It wakes up when you send a message and goes back to sleep when',
         "you're not talking — so it isn't burning resources in the background.",
         'Its memory and environment persist between conversations.',
@@ -1080,7 +1080,7 @@ async function runTimezoneStep(): Promise<void> {
 async function askDisplayName(fallback: string): Promise<string> {
   const answer = ensureAnswer(
     await p.text({
-      message: `What should your assistant call ${accentGreen('you')}?`,
+      message: `What should your clawd call ${accentGreen('you')}?`,
       placeholder: fallback,
       defaultValue: fallback,
     }),
@@ -1094,7 +1094,7 @@ async function askChannelChoice(): Promise<ChannelChoice> {
   const isMac = process.platform === 'darwin';
   const choice = ensureAnswer(
     await brightSelect<ChannelChoice>({
-      message: 'Want to chat with your assistant from your phone?',
+      message: 'Want to chat with your clawd from your phone?',
       options: [
         { value: 'telegram', label: 'Yes, connect Telegram', hint: 'recommended' },
         { value: 'discord', label: 'Yes, connect Discord' },
@@ -1272,7 +1272,7 @@ function printIntro(): void {
   // welcome framing alone so the two don't double up. Standalone runs of
   // setup:auto still see this as the first line — fine without the wordmark
   // since the line itself signals the start of the flow.
-  p.intro("Let's get you set up.");
+  p.intro(`${brandBody("Let's get you set up.")}  ${k.dim('─')}  ${k.dim('Small. Runs on your machine. Yours to modify.')}`);
 }
 
 /**

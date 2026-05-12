@@ -119,7 +119,7 @@ export const CONFIG: Entry[] = [
     key: 'displayName',
     envVar: 'NANOCLAWD_DISPLAY_NAME',
     label: 'Display name',
-    help: 'Skip the "what should your assistant call you?" prompt.',
+    help: 'Skip the "what should your clawd call you?" prompt.',
     surface: 'flag',
     type: 'string',
   },

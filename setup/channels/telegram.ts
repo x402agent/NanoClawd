@@ -181,14 +181,14 @@ async function collectTelegramToken(): Promise<string | 'back'> {
 
   note(
     [
-      "Your assistant talks to you through a Telegram bot you create.",
+      "Your clawd talks to you through a Telegram bot you create.",
       "Here's how:",
       '',
       "  1. Open Telegram and message @BotFather — Telegram's official bot for creating and managing bots",
       '  2. Send /newbot and follow the prompts',
       '  3. Copy the token it gives you (it looks like <digits>:<chars>)',
       '',
-      k.dim('Planning to add your assistant to group chats? In @BotFather:'),
+      k.dim('Planning to add your clawd to group chats? In @BotFather:'),
       k.dim('    /mybots → your bot → Bot Settings → Group Privacy → OFF'),
     ].join('\n'),
     'Set up your Telegram bot',
@@ -350,7 +350,7 @@ async function resolveAgentName(): Promise<string> {
   }
   const answer = ensureAnswer(
     await p.text({
-      message: `What should your ${accentGreen('assistant')} be called?`,
+      message: `What should your ${accentGreen('clawd')} be called?`,
       placeholder: DEFAULT_AGENT_NAME,
       defaultValue: DEFAULT_AGENT_NAME,
     }),

@@ -54,7 +54,7 @@ export async function runSignalChannel(displayName: string): Promise<ChannelFlow
   note(
     [
       "NanoClawd links to Signal as a *secondary* device on your existing",
-      "phone — no new number needed. Your assistant will send and receive",
+      "phone — no new number needed. Your clawd will send and receive",
       "messages as the number on that phone.",
       '',
       "Here's what's about to happen — no input needed for any of it:",
@@ -62,7 +62,7 @@ export async function runSignalChannel(displayName: string): Promise<ChannelFlow
       '  1. Set up signal-cli (auto-installs if missing)',
       '  2. Install the Signal adapter',
       '  3. Show a QR code — scan it from Signal → Settings → Linked Devices',
-      '  4. Wire your assistant and send a welcome message',
+      '  4. Wire your clawd and send a welcome message',
     ].join('\n'),
     'Set up Signal',
   );
@@ -406,7 +406,7 @@ async function resolveAgentName(): Promise<string> {
   }
   const answer = ensureAnswer(
     await p.text({
-      message: `What should your ${accentGreen('assistant')} be called?`,
+      message: `What should your ${accentGreen('clawd')} be called?`,
       placeholder: DEFAULT_AGENT_NAME,
       defaultValue: DEFAULT_AGENT_NAME,
     }),

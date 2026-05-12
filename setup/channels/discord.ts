@@ -516,7 +516,7 @@ async function resolveAgentName(): Promise<string> {
   }
   const answer = ensureAnswer(
     await p.text({
-      message: `What should your ${accentGreen('assistant')} be called?`,
+      message: `What should your ${accentGreen('clawd')} be called?`,
       placeholder: DEFAULT_AGENT_NAME,
       defaultValue: DEFAULT_AGENT_NAME,
     }),

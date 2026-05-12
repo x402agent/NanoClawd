@@ -134,7 +134,7 @@ async function walkThroughAppCreation(): Promise<'continue' | 'back'> {
 
   note(
     [
-      "You'll create a Slack app that the assistant talks through.",
+      "You'll create a Slack app that your clawd talks through.",
       "Free and stays inside the workspaces you pick.",
       '',
       ...linkBlock,
@@ -405,7 +405,7 @@ async function resolveAgentName(): Promise<string> {
   }
   const answer = ensureAnswer(
     await p.text({
-      message: `What should your ${accentGreen('assistant')} be called?`,
+      message: `What should your ${accentGreen('clawd')} be called?`,
       placeholder: DEFAULT_AGENT_NAME,
       defaultValue: DEFAULT_AGENT_NAME,
     }),

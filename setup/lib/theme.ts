@@ -41,7 +41,7 @@ export function brandChip(s: string): string {
 
 /**
  * Accent green (#3fba50) for emphasizing a single word inside prompt
- * messages — currently the "you" in "What should your assistant call
+ * messages — currently the "you" in "What should your clawd call
  * you?" so the operator parses at a glance who the question is about.
  * Same TTY/NO_COLOR/truecolor gating as the rest of the palette.
  */

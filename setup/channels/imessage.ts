@@ -288,7 +288,7 @@ async function askOperatorHandle(): Promise<string> {
   note(
     [
       "What phone number or email do you iMessage with?",
-      "That's where your assistant will send its welcome message.",
+      "That's where your clawd will send its welcome message.",
       '',
       k.dim('  • Phone: start with + and your country code, no spaces or dashes'),
       k.dim('    Example: +14155551234 (country code 1, then 4155551234)'),
@@ -325,7 +325,7 @@ async function resolveAgentName(): Promise<string> {
   }
   const answer = ensureAnswer(
     await p.text({
-      message: `What should your ${accentGreen('assistant')} be called?`,
+      message: `What should your ${accentGreen('clawd')} be called?`,
       placeholder: DEFAULT_AGENT_NAME,
       defaultValue: DEFAULT_AGENT_NAME,
     }),
