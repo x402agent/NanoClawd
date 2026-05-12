@@ -21,6 +21,26 @@
       "description": "Session inbound/outbound DBs"
     },
     {
+      "path": "~/Nano-Clawd/Framework/src",
+      "allowReadWrite": true,
+      "description": "x402agent-nanoclawd Framework source (agent, identity, molting, pulse, skills, state, survival)"
+    },
+    {
+      "path": "~/Nano-Clawd/Framework/dist",
+      "allowReadWrite": true,
+      "description": "Framework compiled output (leviathan/nanoclawd CLI binary target)"
+    },
+    {
+      "path": "~/Nano-Clawd/Framework/packages",
+      "allowReadWrite": true,
+      "description": "Framework sub-packages (clawd, cli)"
+    },
+    {
+      "path": "~/Nano-Clawd/Framework/examples",
+      "allowReadWrite": true,
+      "description": "Framework usage examples"
+    },
+    {
       "path": "~/projects",
       "allowReadWrite": true,
       "description": "Development projects"
