@@ -8,6 +8,7 @@
         "@anthropic-ai/claude-agent-sdk": "^0.2.116",
         "@modelcontextprotocol/sdk": "^1.12.1",
         "@solana/web3.js": "^1.98.4",
+        "@upstash/box": "^0.4.1",
         "bs58": "^6.0.0",
         "cron-parser": "^5.0.0",
         "zod": "^4.0.0",
@@ -71,6 +72,8 @@
     "@types/uuid": ["@types/uuid@10.0.0", "", {}, "sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ=="],
 
     "@types/ws": ["@types/ws@7.4.7", "", { "dependencies": { "@types/node": "*" } }, "sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww=="],
+
+    "@upstash/box": ["@upstash/box@0.4.1", "", { "dependencies": { "zod-to-json-schema": "^3.25.1" }, "peerDependencies": { "zod": "^3.25.0 || ^4.0.0" } }, "sha512-/27e0XNlnTYXq8bFeaSfccp7OytrzYo+yR0UTVyyGI6L3EA+egfPpE7sR6jd0mqTjcel1misZ8jVmyDfZOF4uQ=="],
 
     "accepts": ["accepts@2.0.0", "", { "dependencies": { "mime-types": "^3.0.0", "negotiator": "^1.0.0" } }, "sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng=="],
 

@@ -3,15 +3,34 @@
 </p>
 
 <p align="center">
-  <img src="assets/nanoclawd-logo.png" alt="NanoClawd" width="400">
+  <img src="assets/nanoclawd-logo.png" alt="NanoClawd" width="420">
 </p>
 
 <p align="center">
-  <strong>NanoClawd 🦞</strong> — blockchain-first · privacy-first · attested nano agent
+  <a href="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=20&pause=1000&color=14F195&center=true&vCenter=true&width=640&lines=Sovereign+Clawd+agents+on+Solana+%F0%9F%A6%9E;Every+identity+on-chain.+Every+session+in+a+container.;Blockchain-first+%C2%B7+Privacy-first+%C2%B7+Attested.;No+env+vars.+No+trust-me+config.+No+exceptions.">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=20&pause=1000&color=14F195&center=true&vCenter=true&width=640&lines=Sovereign+Clawd+agents+on+Solana+%F0%9F%A6%9E;Every+identity+on-chain.+Every+session+in+a+container.;Blockchain-first+%C2%B7+Privacy-first+%C2%B7+Attested.;No+env+vars.+No+trust-me+config.+No+exceptions." alt="Typing SVG">
+  </a>
 </p>
 
 <p align="center">
-  <em>Sovereign Clawd agents on Solana. Every identity on-chain. Every session in a container. No exceptions.</em>
+  <a href="https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump">
+    <img src="https://img.shields.io/badge/%24CLAWD-8cHzQH...pump-9945FF?style=for-the-badge&logo=solana&logoColor=white" alt="$CLAWD on Solana">
+  </a>&nbsp;
+  <a href="https://discord.gg/VDdww8qS42">
+    <img src="https://img.shields.io/discord/1470188214710046894?label=Discord&logo=discord&style=for-the-badge&color=5865F2" alt="Discord">
+  </a>&nbsp;
+  <a href="https://solanaclawd.com">
+    <img src="https://img.shields.io/badge/solanaclawd.com-🦞-14F195?style=for-the-badge" alt="solanaclawd.com">
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT">
+  <img src="https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/Bun-agent_runtime-F9F1E1?style=flat-square&logo=bun&logoColor=black" alt="Bun">
+  <img src="https://img.shields.io/badge/Docker-isolated-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/Solana-on--chain_identity-9945FF?style=flat-square&logo=solana&logoColor=white" alt="Solana">
+  <img src="https://img.shields.io/badge/SQLite-two--DB_session-003B57?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite">
 </p>
 
 <p align="center">
@@ -21,17 +40,7 @@
   <a href="src/solana/README.md">solana</a>&nbsp; • &nbsp;
   <a href="README_zh.md">中文</a>&nbsp; • &nbsp;
   <a href="README_ja.md">日本語</a>&nbsp; • &nbsp;
-  <a href="https://discord.gg/VDdww8qS42"><img src="https://img.shields.io/discord/1470188214710046894?label=Discord&logo=discord&v=2" alt="Discord" valign="middle"></a>&nbsp; • &nbsp;
   <a href="repo-tokens"><img src="repo-tokens/badge.svg" alt="repo tokens" valign="middle"></a>
-</p>
-
-<p align="center">
-  <a href="https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump">
-    <img src="https://img.shields.io/badge/%24CLAWD-8cHzQH...pump-9945FF?style=flat&logo=solana&logoColor=white" alt="$CLAWD on Solana">
-  </a>&nbsp; • &nbsp;
-  <a href="https://solanaclawd.com">
-    <img src="https://img.shields.io/badge/solanaclawd.com-🦞-14F195?style=flat" alt="solanaclawd.com">
-  </a>
 </p>
 
 ---
@@ -93,7 +102,7 @@ See [docs/v1-to-v2-changes.md](docs/v1-to-v2-changes.md) for what's different an
 
 **🎯 Skills over features.** Trunk ships the registry and infrastructure, not specific channel adapters or alternative agent providers. Channels (Discord, Slack, Telegram, WhatsApp, …) live on a long-lived `channels` branch; alternative providers (OpenCode, Ollama) live on `providers`. You run `/add-telegram`, `/add-opencode`, etc. and the skill copies exactly the module(s) you need into your fork. No feature you didn't ask for.
 
-**⚡ Best harness, best model.** NanoClawd natively uses Clawd via Anthropic's official Claude Agent SDK, so you get the latest Clawd models and full toolset, including the ability to modify and expand your own NanoClawd fork. Other providers are drop-in options: `/add-codex` for OpenAI's Codex (ChatGPT subscription or API key), `/add-opencode` for OpenRouter, Google, DeepSeek and more via OpenCode, and `/add-ollama-provider` for local open-weight models. Provider is configurable per agent group.
+**⚡ Best harness, best model.** NanoClawd natively uses Clawd via Anthropic's official Clawd Agent SDK, so you get the latest Clawd models and full toolset, including the ability to modify and expand your own NanoClawd fork. Other providers are drop-in options: `/add-codex` for OpenAI's Codex (ChatGPT subscription or API key), `/add-opencode` for OpenRouter, Google, DeepSeek and more via OpenCode, and `/add-ollama-provider` for local open-weight models. Provider is configurable per agent group.
 
 **🔗 Solana-native from birth.** Every NanoClawd agent gets a Solana keypair at spawn time, plus a self-custodial **NanoClawd Wallet** built into the container. Identity is on-chain via the Solana Attestation Service. Payments — inference, API calls, gateway fees — flow from a per-agent-group SOL/SPL escrow. The agent can check balances, send SOL, and swap any token via Jupiter directly from chat. Token: [$CLAWD](https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump) on Solana.
 
@@ -103,7 +112,7 @@ See [docs/v1-to-v2-changes.md](docs/v1-to-v2-changes.md) for what's different an
 - **Multi-channel messaging** — WhatsApp, Telegram, Discord, Slack, Microsoft Teams, iMessage, Matrix, Google Chat, Webex, Linear, GitHub, WeChat, and email via Resend. Installed on demand with `/add-<channel>` skills. Run one or many at the same time.
 - **Flexible isolation** — connect each channel to its own agent for full privacy, share one agent across many channels for unified memory with separate conversations, or fold multiple channels into a single shared session so one conversation spans many surfaces. Pick per channel via `/manage-channels`. See [docs/isolation-model.md](docs/isolation-model.md).
 - **Per-agent workspace** — each agent group has its own `CLAUDE.md`, its own memory, its own container, and only the mounts you allow. Nothing crosses the boundary unless you wire it to.
-- **Scheduled tasks** — recurring jobs that run Claude and can message you back
+- **Scheduled tasks** — recurring jobs that run Clawd and can message you back
 - **Web access** — search and fetch content from the web
 - **Container isolation** — agents are sandboxed in Docker (macOS/Linux/WSL2), with optional [Docker Sandboxes](docs/docker-sandboxes.md) micro-VM isolation or Apple Container as a macOS-native opt-in
 - **Credential security** — agents never hold raw API keys. Outbound requests route through [OneCLI's Agent Vault](https://github.com/onecli/onecli), which injects credentials at request time and enforces per-agent policies and rate limits.
@@ -158,12 +167,14 @@ Skills we'd like to see:
 - macOS or Linux (Windows via WSL2)
 - Node.js 20+ and pnpm 10+ (the installer will install both if missing)
 - [Docker Desktop](https://docker.com/products/docker-desktop) (macOS/Windows) or Docker Engine (Linux)
-- [Clawd (Claude Code)](https://claude.ai/download) for `/customize`, `/debug`, error recovery during setup, and all `/add-<channel>` skills
+- [Clawd](https://claude.ai/download) for `/customize`, `/debug`, error recovery during setup, and all `/add-<channel>` skills
 
 ## Architecture
 
 ```
-messaging apps → host (router) → inbound.db → container (Bun, Clawd Agent SDK, Solana keypair) → outbound.db → host (delivery) → messaging apps
+messaging apps → host (router) → inbound.db → container (Bun · Clawd Agent SDK · Solana keypair)
+                                                          ↓
+messaging apps ← host (delivery) ← outbound.db ←────────┘
 ```
 
 A single Node host orchestrates per-session agent containers. When a message arrives, the host routes it via the entity model (user → messaging group → agent group → session), writes it to the session's `inbound.db`, and wakes the container. The agent-runner inside the container polls `inbound.db`, runs Claude, and writes responses to `outbound.db`. The host polls `outbound.db` and delivers back through the channel adapter.
