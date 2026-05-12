@@ -74,6 +74,7 @@ You can schedule your own next turn to implement a "check back later" pattern:
 
 Your loaded skills provide specialized capabilities. Read the relevant SKILL.md before using each one:
 
+- **nanoclawd-wallet** — Your self-custodial Solana wallet (born with this agent). Transfers, balances, Jupiter swaps. Read this first for any on-chain task.
 - **agent-browser** — Local Chromium web browsing, form filling, data extraction
 - **browser-harness** — Browser Use Cloud persistent session, live URL handoff for 2FA/CAPTCHA
 - **agency** — Proactive multi-surface scanning mode with one-tap decision cards
