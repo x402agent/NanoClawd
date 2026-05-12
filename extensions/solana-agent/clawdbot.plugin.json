@@ -1,0 +1,56 @@
+{
+  "id": "solana-agent",
+  "name": "Solana Agent",
+  "description": "Solana Agent Kit integration with 137+ actions for DeFi, NFTs, tokens, and more",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable the Solana Agent extension"
+      },
+      "rpcUrl": {
+        "type": "string",
+        "description": "Solana RPC endpoint URL (defaults to mainnet-beta)"
+      },
+      "network": {
+        "type": "string",
+        "enum": ["mainnet-beta", "devnet", "testnet"],
+        "default": "mainnet-beta",
+        "description": "Solana network to connect to"
+      },
+      "enableRemoteSigning": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable remote wallet signing via mobile app"
+      },
+      "plugins": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["token", "defi", "nft", "misc", "blinks"]
+        },
+        "default": ["token", "defi", "nft", "misc"],
+        "description": "Solana Agent Kit plugins to load"
+      }
+    },
+    "additionalProperties": false
+  },
+  "uiHints": {
+    "rpcUrl": {
+      "label": "RPC URL",
+      "placeholder": "https://api.mainnet-beta.solana.com"
+    },
+    "network": {
+      "label": "Network"
+    },
+    "enableRemoteSigning": {
+      "label": "Enable Mobile Signing"
+    },
+    "plugins": {
+      "label": "Plugins"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "financial-datasets",
+  "name": "Financial Datasets",
+  "description": "Comprehensive financial data API - stocks, crypto, SEC filings, financial statements, and news from financialdatasets.ai",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable or disable the Financial Datasets plugin"
+      }
+    },
+    "additionalProperties": false
+  },
+  "uiHints": {
+    "enabled": {
+      "label": "Enable Plugin",
+      "description": "Toggle to enable/disable all Financial Datasets tools"
+    }
+  },
+  "skills": [
+    "financial-analyst"
+  ]
+}

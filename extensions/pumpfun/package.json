@@ -1,0 +1,35 @@
+{
+  "name": "@clawdbot/pumpfun",
+  "version": "0.1.0",
+  "description": "Pump.fun token launch and trading tools for Clawdbot",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "clawdbot": {
+    "extensions": ["index.ts"]
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.2",
+    "@solana/spl-token": "^0.4.13",
+    "@sinclair/typebox": "^0.34.0",
+    "bs58": "^6.0.0",
+    "bn.js": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/bn.js": "^5.1.6",
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "clawdbot": "*"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "license": "MIT"
+}

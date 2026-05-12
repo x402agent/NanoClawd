@@ -1,0 +1,56 @@
+# mawdbot Email Worker Configuration
+#
+# Deploy: wrangler deploy
+# Dev:    wrangler dev
+#
+# Email routing setup:
+# 1. Go to Cloudflare Dashboard > Email Routing
+# 2. Add your domain and verify DNS
+# 3. Create a routing rule: *@mawdbot.yourdomain.com -> Worker: mawdbot-email
+#
+# Or use catch-all: *@yourdomain.com -> Worker: mawdbot-email
+
+name = "mawdbot-email"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# Email routing - messages sent to your domain will trigger this worker
+# Configure the actual routing in Cloudflare Dashboard > Email Routing
+# The worker receives emails via the `email` export
+
+[vars]
+# Non-sensitive config vars go here
+# ALLOWED_SENDERS = "user1@gmail.com,user2@gmail.com"
+
+# Secrets - set via wrangler secret put
+# wrangler secret put XAI_API_KEY
+# wrangler secret put BIRDEYE_API_KEY (optional)
+# wrangler secret put FORWARD_TO (optional)
+
+# Development overrides
+[env.dev]
+name = "mawdbot-email-dev"
+
+[env.dev.vars]
+# Dev-specific vars
+
+# Production overrides
+[env.production]
+name = "mawdbot-email"
+
+# Optional: KV namespace for storing conversation history
+# [[kv_namespaces]]
+# binding = "CONVERSATIONS"
+# id = "your-kv-namespace-id"
+
+# Optional: D1 database for persistent storage
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "mawdbot-email"
+# database_id = "your-d1-database-id"
+
+# Optional: R2 bucket for storing generated images
+# [[r2_buckets]]
+# binding = "IMAGES"
+# bucket_name = "mawdbot-images"

@@ -1,0 +1,52 @@
+{
+  "name": "@clawdbot/solana-trading",
+  "version": "0.1.0",
+  "description": "Solana trading bot extension for Clawdbot - sniper, volume bot, copy trading, wallet tracking",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "clawdbot": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push"
+  },
+  "dependencies": {
+    "@bagsfm/bags-sdk": "^1.2.7",
+    "@pump-fun/pump-sdk": "^1.0.0",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.95.4",
+    "bn.js": "^5.2.1",
+    "bs58": "^6.0.0",
+    "drizzle-orm": "^0.38.0",
+    "nanoid": "^5.0.9",
+    "pinata": "^1.0.0",
+    "postgres": "^3.4.5",
+    "redaxios": "^0.5.1",
+    "ws": "^8.18.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.6",
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.13",
+    "drizzle-kit": "^0.30.0",
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "clawdbot": ">=2026.1.0"
+  }
+}

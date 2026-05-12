@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - '@whiskeysockets/baileys'
+  - clawdbot
+  - node-llama-cpp
+  - protobufjs
+  - sharp

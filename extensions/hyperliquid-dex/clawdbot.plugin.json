@@ -1,0 +1,37 @@
+{
+  "id": "hyperliquid-dex",
+  "name": "Hyperliquid DEX",
+  "description": "Hyperliquid DEX trading integration for perpetuals, spot trading, and real-time market data",
+  "version": "1.0.0",
+  "author": "Clawdbot",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable the Hyperliquid DEX extension"
+      },
+      "walletAddress": {
+        "type": "string",
+        "description": "Hyperliquid wallet address (HYPERLIQUID_WALLET)"
+      },
+      "privateKey": {
+        "type": "string",
+        "description": "Hyperliquid wallet private key (HYPERLIQUID_PRIVATE_KEY)"
+      },
+      "testnet": {
+        "type": "boolean",
+        "default": false,
+        "description": "Use testnet instead of mainnet"
+      },
+      "enableWs": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable WebSocket for real-time data"
+      }
+    },
+    "required": ["enabled"],
+    "additionalProperties": false
+  }
+}

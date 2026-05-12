@@ -1,0 +1,12 @@
+{
+    "id": "fal-ai-video-generation",
+    "name": "FAL.ai Video Generation",
+    "description": "Video generation using FAL.ai",
+    "enabled": false,
+    "version": "0.1.0",
+    "configSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true
+    }
+}

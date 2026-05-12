@@ -1,0 +1,49 @@
+{
+  "name": "@clawdbot/solana-agent",
+  "version": "0.1.0",
+  "description": "Solana Agent Kit integration for Clawdbot - 137+ DeFi, NFT, and token actions",
+  "type": "module",
+  "main": "dist/plugin.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./plugin": {
+      "import": "./dist/plugin.js",
+      "types": "./dist/plugin.d.ts"
+    }
+  },
+  "clawdbot": {
+    "extensions": ["src/plugin.ts"]
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "solana-agent-kit": "^2.0.6",
+    "@solana-agent-kit/plugin-token": "^2.0.6",
+    "@solana-agent-kit/plugin-defi": "^2.0.6",
+    "@solana-agent-kit/plugin-nft": "^2.0.6",
+    "@solana-agent-kit/plugin-misc": "^2.0.6",
+    "@solana/web3.js": "^1.98.2",
+    "@solana/spl-token": "^0.4.13",
+    "@sinclair/typebox": "^0.34.0",
+    "bs58": "^6.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "clawdbot": "*"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,12 @@
+{
+    "id": "jupiter-ultra",
+    "name": "Jupiter Ultra",
+    "description": "Jupiter Ultra DEX integration",
+    "enabled": false,
+    "version": "0.1.0",
+    "configSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true
+    }
+}

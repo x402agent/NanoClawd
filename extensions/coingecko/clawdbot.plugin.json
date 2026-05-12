@@ -1,0 +1,46 @@
+{
+  "id": "coingecko",
+  "name": "CoinGecko",
+  "description": "Real-time cryptocurrency market data from CoinGecko Pro API with charting support",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable or disable the CoinGecko plugin"
+      },
+      "defaultCurrency": {
+        "type": "string",
+        "default": "usd",
+        "description": "Default fiat currency for price display (e.g., usd, eur, gbp)"
+      },
+      "chartWidth": {
+        "type": "number",
+        "default": 60,
+        "description": "Width of ASCII charts in characters"
+      },
+      "chartHeight": {
+        "type": "number",
+        "default": 15,
+        "description": "Height of ASCII charts in rows"
+      }
+    },
+    "additionalProperties": false
+  },
+  "uiHints": {
+    "defaultCurrency": {
+      "label": "Default Currency",
+      "placeholder": "usd"
+    },
+    "chartWidth": {
+      "label": "Chart Width",
+      "placeholder": "60"
+    },
+    "chartHeight": {
+      "label": "Chart Height",
+      "placeholder": "15"
+    }
+  }
+}

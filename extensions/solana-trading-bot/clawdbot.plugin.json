@@ -1,0 +1,81 @@
+{
+  "id": "solana-trading-bot",
+  "name": "Solana Trading Bot",
+  "version": "1.0.0",
+  "description": "Advanced Solana trading with Bags.fm - sniper bot, copy trading, volume bot, and wallet tracking",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable the Solana trading bot"
+      },
+      "bagsApiKey": {
+        "type": "string",
+        "secret": true,
+        "description": "Bags.fm API key"
+      },
+      "bagsPartnerConfigKey": {
+        "type": "string",
+        "secret": true,
+        "description": "Optional Bags.fm partner config key for fee sharing"
+      },
+      "rpcEndpoint": {
+        "type": "string",
+        "description": "Solana RPC endpoint URL"
+      },
+      "rpcWebsocketEndpoint": {
+        "type": "string",
+        "description": "Solana RPC WebSocket endpoint URL"
+      },
+      "grpcEndpoint": {
+        "type": "string",
+        "description": "Yellowstone gRPC endpoint for sniper bot"
+      },
+      "grpcToken": {
+        "type": "string",
+        "secret": true,
+        "description": "Yellowstone gRPC authentication token"
+      },
+      "upstashRedisUrl": {
+        "type": "string",
+        "description": "Upstash Redis REST URL"
+      },
+      "upstashRedisToken": {
+        "type": "string",
+        "secret": true,
+        "description": "Upstash Redis REST token"
+      },
+      "privy": {
+        "type": "object",
+        "properties": {
+          "appId": {
+            "type": "string",
+            "description": "Privy application ID"
+          },
+          "appSecret": {
+            "type": "string",
+            "secret": true,
+            "description": "Privy application secret"
+          }
+        }
+      },
+      "defaultSlippage": {
+        "type": "number",
+        "default": 1,
+        "description": "Default slippage percentage for trades"
+      },
+      "sniperEnabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable sniper bot functionality"
+      },
+      "copyTradingEnabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable copy trading functionality"
+      }
+    }
+  }
+}

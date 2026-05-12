@@ -1,0 +1,43 @@
+{
+  "name": "@clawdbot/coingecko",
+  "version": "0.1.0",
+  "description": "CoinGecko Pro API integration for real-time crypto market data",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "clawdbot": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "clawdbot": ">=2026.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "files": [
+    "dist",
+    "clawdbot.plugin.json"
+  ],
+  "keywords": [
+    "clawdbot",
+    "coingecko",
+    "crypto",
+    "market-data",
+    "price"
+  ],
+  "license": "MIT"
+}

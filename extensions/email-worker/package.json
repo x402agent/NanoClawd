@@ -1,0 +1,19 @@
+{
+  "name": "mawdbot-email-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "mawdbot Cloudflare Email Worker - AI assistant via email",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:prod": "wrangler deploy --env production",
+    "tail": "wrangler tail",
+    "types": "wrangler types"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241127.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^3.93.0"
+  }
+}

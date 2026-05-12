@@ -1,0 +1,38 @@
+{
+  "name": "@clawdbot/coinbase-cdp",
+  "version": "1.0.0",
+  "description": "Coinbase Developer Platform (CDP) Server Wallet integration for Clawdbot - EVM and Solana wallet management",
+  "type": "module",
+  "main": "dist/plugin.js",
+  "types": "dist/plugin.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/plugin.js",
+      "types": "./dist/plugin.d.ts"
+    }
+  },
+  "clawdbot": {
+    "extensions": [
+      "./dist/plugin.js"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@coinbase/cdp-sdk": "^1.43.1",
+    "@solana/web3.js": "^1.95.4",
+    "dotenv": "^16.4.5",
+    "viem": "^2.21.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "clawdbot": ">=2026.1.0"
+  }
+}

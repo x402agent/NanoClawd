@@ -1,0 +1,40 @@
+{
+  "id": "aster-dex",
+  "name": "Aster DEX",
+  "description": "Aster DEX trading integration for perpetuals, spot trading, price analysis, and alerts",
+  "version": "1.0.0",
+  "author": "Clawdbot",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable the Aster DEX extension"
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Aster API Key (ASTER_API_KEY)"
+      },
+      "apiSecret": {
+        "type": "string",
+        "description": "Aster API Secret (ASTER_API_SECRET)"
+      },
+      "walletAddress": {
+        "type": "string",
+        "description": "Aster wallet address (ASTER_API_WALLET_ADDRESS)"
+      },
+      "privateKey": {
+        "type": "string",
+        "description": "Aster wallet private key (ASTER_API_WALLET_PRIVATE_KEY)"
+      },
+      "baseUrl": {
+        "type": "string",
+        "default": "https://fapi.asterdex.com",
+        "description": "Aster API base URL"
+      }
+    },
+    "required": ["enabled"],
+    "additionalProperties": false
+  }
+}

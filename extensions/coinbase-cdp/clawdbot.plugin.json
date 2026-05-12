@@ -1,0 +1,22 @@
+{
+  "id": "coinbase-cdp",
+  "name": "Coinbase CDP",
+  "description": "Coinbase Developer Platform (CDP) Server Wallet integration - EVM and Solana wallet management for trading",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable the Coinbase CDP extension"
+      }
+    },
+    "additionalProperties": false
+  },
+  "uiHints": {
+    "enabled": {
+      "label": "Enable CDP Wallets"
+    }
+  }
+}

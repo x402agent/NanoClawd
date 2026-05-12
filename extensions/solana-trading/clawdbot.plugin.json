@@ -1,0 +1,180 @@
+{
+  "id": "solana-trading",
+  "name": "Solana Trading Bot",
+  "description": "Trading automation: sniper bot, volume bot, copy trading, wallet tracking, and Bags.fm token launches",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable the Solana Trading Bot extension"
+      },
+      "database": {
+        "type": "object",
+        "description": "PostgreSQL database configuration",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "PostgreSQL connection URL (e.g., postgresql://user:pass@host:5432/db)"
+          },
+          "ssl": {
+            "type": "boolean",
+            "default": true,
+            "description": "Use SSL for database connection"
+          }
+        },
+        "required": ["url"]
+      },
+      "helius": {
+        "type": "object",
+        "description": "Helius API configuration for wallet tracking",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "description": "Helius API key"
+          },
+          "webhookUrl": {
+            "type": "string",
+            "description": "Webhook URL for receiving transaction notifications"
+          }
+        }
+      },
+      "bags": {
+        "type": "object",
+        "description": "Bags.fm API configuration for token launches",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "description": "Bags.fm API key"
+          },
+          "partnerConfigKey": {
+            "type": "string",
+            "description": "Partner config key for fee sharing"
+          }
+        }
+      },
+      "rpcUrl": {
+        "type": "string",
+        "description": "Solana RPC endpoint URL (defaults to mainnet via Helius if apiKey provided)"
+      },
+      "sniper": {
+        "type": "object",
+        "description": "Sniper bot configuration",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable sniper bot service"
+          },
+          "defaultBuyAmount": {
+            "type": "number",
+            "default": 0.1,
+            "description": "Default SOL amount per snipe"
+          },
+          "defaultSlippage": {
+            "type": "number",
+            "default": 15,
+            "description": "Default slippage tolerance (%)"
+          },
+          "maxConcurrentSnipes": {
+            "type": "number",
+            "default": 3,
+            "description": "Maximum concurrent snipe operations"
+          }
+        }
+      },
+      "volumeBot": {
+        "type": "object",
+        "description": "Volume bot configuration",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable volume bot service"
+          },
+          "defaultInterval": {
+            "type": "number",
+            "default": 60,
+            "description": "Default interval between trades (seconds)"
+          },
+          "maxWallets": {
+            "type": "number",
+            "default": 5,
+            "description": "Maximum wallets for volume generation"
+          }
+        }
+      },
+      "copyTrading": {
+        "type": "object",
+        "description": "Copy trading configuration",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable copy trading service"
+          },
+          "defaultMultiplier": {
+            "type": "number",
+            "default": 1,
+            "description": "Default trade size multiplier"
+          },
+          "maxTradeAmount": {
+            "type": "number",
+            "description": "Maximum trade amount in SOL"
+          }
+        }
+      },
+      "walletTracking": {
+        "type": "object",
+        "description": "Wallet tracking configuration",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable wallet tracking notifications"
+          },
+          "maxTrackedWallets": {
+            "type": "number",
+            "default": 50,
+            "description": "Maximum wallets to track per user"
+          }
+        }
+      }
+    },
+    "required": ["database"],
+    "additionalProperties": false
+  },
+  "uiHints": {
+    "database.url": {
+      "label": "Database URL",
+      "placeholder": "postgresql://user:pass@localhost:5432/clawdbot_trading",
+      "secret": true
+    },
+    "helius.apiKey": {
+      "label": "Helius API Key",
+      "secret": true
+    },
+    "bags.apiKey": {
+      "label": "Bags.fm API Key",
+      "secret": true
+    },
+    "rpcUrl": {
+      "label": "RPC URL",
+      "placeholder": "Uses Helius RPC if API key provided"
+    },
+    "sniper.enabled": {
+      "label": "Enable Sniper Bot"
+    },
+    "sniper.defaultBuyAmount": {
+      "label": "Default Buy Amount (SOL)"
+    },
+    "volumeBot.enabled": {
+      "label": "Enable Volume Bot"
+    },
+    "copyTrading.enabled": {
+      "label": "Enable Copy Trading"
+    }
+  }
+}

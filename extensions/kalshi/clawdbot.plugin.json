@@ -1,0 +1,17 @@
+{
+  "id": "kalshi",
+  "name": "Kalshi Prediction Markets",
+  "description": "Kalshi prediction market integration - browse markets, trade, and analyze predictions",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable the Kalshi extension"
+      }
+    },
+    "additionalProperties": false
+  }
+}

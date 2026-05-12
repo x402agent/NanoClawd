@@ -1,0 +1,13 @@
+{
+  "name": "jupiter-ultra",
+  "version": "1.0.0",
+  "description": "MCP server for Jupiter Ultra API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+"dependencies": {
+  "axios": "^1.7.2",
+  "dotenv": "^16.4.1"
+}
+}
