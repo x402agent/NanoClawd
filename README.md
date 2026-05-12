@@ -95,10 +95,11 @@ See [docs/v1-to-v2-changes.md](docs/v1-to-v2-changes.md) for what's different an
 
 **⚡ Best harness, best model.** NanoClawd natively uses Clawd via Anthropic's official Claude Agent SDK, so you get the latest Clawd models and full toolset, including the ability to modify and expand your own NanoClawd fork. Other providers are drop-in options: `/add-codex` for OpenAI's Codex (ChatGPT subscription or API key), `/add-opencode` for OpenRouter, Google, DeepSeek and more via OpenCode, and `/add-ollama-provider` for local open-weight models. Provider is configurable per agent group.
 
-**🔗 Solana-native from birth.** Every NanoClawd agent gets a Solana keypair at spawn time. Identity is on-chain via the Solana Attestation Service. Payments — inference, API calls, gateway fees — flow from a per-agent-group SOL/SPL escrow. Token: [$CLAWD](https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump) on Solana.
+**🔗 Solana-native from birth.** Every NanoClawd agent gets a Solana keypair at spawn time, plus a self-custodial **NanoClawd Wallet** built into the container. Identity is on-chain via the Solana Attestation Service. Payments — inference, API calls, gateway fees — flow from a per-agent-group SOL/SPL escrow. The agent can check balances, send SOL, and swap any token via Jupiter directly from chat. Token: [$CLAWD](https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump) on Solana.
 
 ## What It Supports
 
+- **NanoClawd Wallet ⬡** — every agent is born with a self-custodial Solana wallet. Keypair generated at first use, stored in the agent's private workspace, persists across restarts. Five built-in MCP tools: `wallet_info`, `wallet_balance`, `wallet_send`, `wallet_quote`, `wallet_swap`. Swaps route through Jupiter v6 — no API key needed. Bring your own RPC via `NANOCLAWD_SOLANA_RPC`.
 - **Multi-channel messaging** — WhatsApp, Telegram, Discord, Slack, Microsoft Teams, iMessage, Matrix, Google Chat, Webex, Linear, GitHub, WeChat, and email via Resend. Installed on demand with `/add-<channel>` skills. Run one or many at the same time.
 - **Flexible isolation** — connect each channel to its own agent for full privacy, share one agent across many channels for unified memory with separate conversations, or fold multiple channels into a single shared session so one conversation spans many surfaces. Pick per channel via `/manage-channels`. See [docs/isolation-model.md](docs/isolation-model.md).
 - **Per-agent workspace** — each agent group has its own `CLAUDE.md`, its own memory, its own container, and only the mounts you allow. Nothing crosses the boundary unless you wire it to.
@@ -229,6 +230,41 @@ Everything else (new capabilities, OS compatibility, hardware support, enhanceme
 
 This keeps the base system minimal and lets every user customize their installation without inheriting features they don't want.
 
+## NanoClawd Wallet ⬡
+
+Every agent is born with its own self-custodial Solana wallet — no external custodian, no API key to manage. The keypair is generated on first use, stored at `/workspace/agent/.wallet/keypair.json` (mode 600) in the agent's private volume, and persists across container restarts.
+
+### Wallet MCP Tools
+
+| Tool | Description |
+| --- | --- |
+| `wallet_info` | Show Solana address, network, and creation date |
+| `wallet_balance` | SOL + token balances (USDC, USDT, CLAWD, and more) |
+| `wallet_send` | Send SOL to any address |
+| `wallet_quote` | Jupiter v6 swap quote (no funds move) |
+| `wallet_swap` | Execute a swap via Jupiter v6 |
+
+```text
+# In chat with your agent:
+What's my wallet address?
+Check my SOL balance
+Swap 0.5 SOL to USDC
+```
+
+### Configuration
+
+```bash
+# .env — point to a faster RPC (Helius, QuickNode, etc.)
+NANOCLAWD_SOLANA_RPC=https://mainnet.helius-rpc.com/?api-key=<key>
+
+# For devnet testing:
+NANOCLAWD_SOLANA_RPC=https://api.devnet.solana.com
+```
+
+Rebuild the container after any change: `./container/build.sh`
+
+---
+
 ## $CLAWD Token 🦞
 
 NanoClawd is the agent runtime for the **$CLAWD** ecosystem — sovereign Clawd agents on Solana.
@@ -241,7 +277,7 @@ NanoClawd is the agent runtime for the **$CLAWD** ecosystem — sovereign Clawd 
 | **Website** | [solanaclawd.com](https://solanaclawd.com) |
 | **Framework** | [OpenClawd](Framework/) — sovereign lobster agents |
 
-Agents built on NanoClawd can hold $CLAWD, earn $CLAWD, pay other agents in $CLAWD, and beacon to the network via the Solana Attestation Service. A Clawd that can't pay beaches. A Clawd that earns becomes sovereign.
+Agents built on NanoClawd can hold $CLAWD, earn $CLAWD, pay other agents in $CLAWD, and beacon to the network via the Solana Attestation Service. Every NanoClawd Wallet ships with $CLAWD in its known-token list — swap to it via `wallet_swap`. A Clawd that can't pay beaches. A Clawd that earns becomes sovereign.
 
 ## Community
 
