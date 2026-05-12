@@ -1261,10 +1261,10 @@ function maybeReexecUnderSg(): void {
 
 function printIntro(): void {
   const isReexec = process.env.NANOCLAWD_REEXEC_SG === '1';
-  const wordmark = `${k.bold('Nano')}${brandBold('Clawd')}`;
+  const wordmark = brandBold('NANOCLAWD');
 
   if (isReexec) {
-    p.intro(`${brandChip(' Welcome ')}  ${wordmark}  ${k.dim('· picking up where we left off')}`);
+    p.intro(`${brandChip(' ⬡ NANOCLAWD ')}  ${wordmark}  ${k.dim('· picking up where we left off')}`);
     return;
   }
 
@@ -1272,7 +1272,7 @@ function printIntro(): void {
   // welcome framing alone so the two don't double up. Standalone runs of
   // setup:auto still see this as the first line — fine without the wordmark
   // since the line itself signals the start of the flow.
-  p.intro(`${brandBody("Let's get you set up.")}  ${k.dim('─')}  ${k.dim('Small. Runs on your machine. Yours to modify.')}`);
+  p.intro(`${brandChip(' ⬡ ')} ${brandBody("Let's get you set up.")}`);
 }
 
 /**

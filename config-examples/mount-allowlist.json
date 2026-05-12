@@ -1,6 +1,26 @@
 {
   "allowedRoots": [
     {
+      "path": "~/Nano-Clawd/container/skills",
+      "allowReadWrite": false,
+      "description": "Container skills mounted into every agent session (read-only)"
+    },
+    {
+      "path": "~/Nano-Clawd/container/agent-runner/src",
+      "allowReadWrite": false,
+      "description": "Agent-runner source (read-only reference for self-modification flows)"
+    },
+    {
+      "path": "~/Nano-Clawd/groups",
+      "allowReadWrite": true,
+      "description": "Per-agent-group filesystems (CLAUDE.md, skills, agent-runner-src overlays)"
+    },
+    {
+      "path": "~/Nano-Clawd/data/v2-sessions",
+      "allowReadWrite": true,
+      "description": "Session inbound/outbound DBs"
+    },
+    {
       "path": "~/projects",
       "allowReadWrite": true,
       "description": "Development projects"
@@ -9,17 +29,14 @@
       "path": "~/repos",
       "allowReadWrite": true,
       "description": "Git repositories"
-    },
-    {
-      "path": "~/Documents/work",
-      "allowReadWrite": false,
-      "description": "Work documents (read-only)"
     }
   ],
   "blockedPatterns": [
     "password",
     "secret",
-    "token"
+    "token",
+    ".env",
+    "private"
   ],
   "nonMainReadOnly": true
 }
